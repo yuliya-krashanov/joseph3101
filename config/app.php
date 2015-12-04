@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Kiev',
 
     /*
     |--------------------------------------------------------------------------
@@ -140,10 +140,12 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        pizza\Providers\AppServiceProvider::class,
+        pizza\Providers\AuthServiceProvider::class,
+        pizza\Providers\EventServiceProvider::class,
+        pizza\Providers\RouteServiceProvider::class,
+
+      //  Aimeos\Shop\ShopServiceProvider::class,
 
     ],
 
