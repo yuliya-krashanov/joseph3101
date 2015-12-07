@@ -1,0 +1,444 @@
+.big_popup
+{
+	background:url(../img/big_popup-bg.jpg) no-repeat scroll center top / 100% 100%;
+	padding: 20px;
+}
+.mobile_number_box
+{
+	background: -webkit-linear-gradient(90deg, #866cd3, #4f2b9a); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(90deg, #866cd3, #4f2b9a); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(90deg, #866cd3, #4f2b9a); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(90deg, #866cd3, #4f2b9a); /* Standard syntax (must be last) */
+	text-align:center;
+	padding: 25px 0;
+}
+.popup_input {
+    font-size: 20px;
+    padding: 2px 15px;
+    width: 70%;
+    border-radius: 3px;
+	border:1px solid #eee;
+}
+.first_last
+{
+	background: -webkit-linear-gradient(90deg, #866cd3, #4f2b9a); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(90deg, #866cd3, #4f2b9a); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(90deg, #866cd3, #4f2b9a); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(90deg, #866cd3, #4f2b9a); /* Standard syntax (must be last) */
+	text-align:center;
+	padding: 30px 0 50px;
+	margin-top:20px;
+}
+.name_input {
+    padding: 0 15px;
+    width: 100%;
+    border-radius: 3px;
+	border:1px solid #eee;
+}
+.pad-10
+{
+	padding-bottom:10px !important;
+}
+.contineue
+{
+	background: -webkit-linear-gradient(90deg, #866cd3, #4f2b9a); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(90deg, #866cd3, #4f2b9a); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(90deg, #866cd3, #4f2b9a); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(90deg, #866cd3, #4f2b9a); /* Standard syntax (must be last) */
+	height: 304px;
+    margin-top: 20px;
+    padding-top: 30px;
+}
+.contineue_btn {
+    background: #ffb612 none repeat scroll 0 0;
+    border-radius: 3px;
+    box-shadow: 1px 1px 2px #333;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 45px;
+}
+.aqua_input_comments
+{
+	width:100%;
+	height:70px;
+	border-radius:10px;
+	border:1px solid #eee;
+	padding:3px 10px;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+.left-image
+{
+	text-align:center;
+	color:#FFF;
+}
+.left-image h2
+{
+	font-size:38px;
+	font-weight:bold;
+	text-shadow: 2px 3px 0 #777;
+	margin-top:80px;
+}
+
+/*-------------Menu Market------------*/
+.small_popup
+{
+	background:url(../images/pizza_popup.png) no-repeat scroll center top / 100% 100%;
+	height:250px;
+}
+.small_popup img {
+  float: left;
+  left: 14px;
+  position: relative;
+  top: 30px;
+}
+.doller_price
+{
+	font-size:45px;
+	color:#FF0000;
+}
+.doller_price {
+  color: #ff0000;
+  font-size: 45px;
+  font-weight: 500;
+  left: -83px;
+  position: relative;
+  text-align: left;
+  top: 84px;
+}
+span.deal {
+  bottom: 14px;
+  color: #67ff01;
+  font-size: 50px;
+  font-weight: 600;
+  left: -6%;
+  line-height: 40px;
+  position: relative;
+  text-transform: uppercase;
+}
+h2.greek {
+  bottom: 35px;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+  left: -6%;
+  position: relative;
+  text-transform: uppercase;
+}
+small.pop-small {
+  bottom: 53px;
+  color: #fff;
+  font-size: 60%;
+  font-weight: 600;
+  left: 17%;
+  position: relative;
+}
+small.pop-small2 {
+  bottom: 42px;
+  color: #fff;
+  font-size: 60%;
+  font-weight: 600;
+  left: -7%;
+  position: relative;
+}
+.sm_button.no-thank {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  width: 23%;
+  background: #FF6600;
+  border-radius: 50px;
+}
+.sm_button.yes-add {
+  color: #fff;
+  background: #FF6600;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  width: 23%;
+}
+p.no-yes-btn {
+  bottom: 42px;
+  left: -5%;
+  position: relative;
+}
+
+/*-------------Home Deal Pop-up-------------------------------*/
+.small_popup_home
+{
+	background:url(../images/home-deal.png) no-repeat scroll center top / 100% 100%;
+	height:270px;
+}
+.small_popup_home img {
+  float: left;
+  left: 15px;
+  position: relative;
+  top: 40px;
+  width: 45%;
+}
+.doller_price.home
+{
+	font-size:50px;
+	color:#FF0000;
+}
+.doller_price.home {
+  color: #ff0000;
+  font-size: 45px;
+  font-weight: 500;
+  left: -121px;
+  position: relative;
+  text-align: left;
+  top: 70px;
+}
+span.deal_home {
+  bottom: -11px;
+  color: #33ffff;
+  font-size: 65px;
+  font-weight: 600;
+  left: -8%;
+  line-height: 41px;
+  position: relative;
+  text-transform: uppercase;
+  text-shadow: 5px 5px 2px #333;
+}
+h2.greek_home {
+  bottom: -5px;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+  left: -9%;
+  position: relative;
+  text-transform: uppercase;
+}
+small.pop-small_home {
+  bottom: 0;
+  color: #fff;
+  font-size: 65%;
+  font-weight: 600;
+  left: -9%;
+  position: relative;
+  word-spacing: -1px;
+}
+small.pop-small2 {
+  bottom: 41px;
+  color: #fff;
+  font-size: 65%;
+  font-weight: 600;
+  left: -8%;
+  position: relative;
+}
+.sm_button.no-thank_home {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  width: 23%;
+  background: #00CC33;
+  border-radius: 50px;
+  border: 1px solid #009900;
+}
+.sm_button.yes-add_home {
+  color: #fff;
+  background: #00CC33;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  width: 23%;
+  border: 1px solid #009900;
+}
+p.no-yes-btn_home {
+  left: -11%;
+  position: relative;
+  top: 5px;
+}
+/*------------------------Menu Order---------------------------*/
+.order_box
+{
+	background:url(../images/add-to-cart-pop-up.png) no-repeat scroll center top / 100% 100%;
+	height:600px;
+}
+.price_menu
+{
+	position:relative;
+	top:40px;
+	background:#FFF;
+	padding:4px 5px;
+	width:63%;
+	margin-left:30px;
+	border-radius:6px;
+}
+.price_menu ul
+{
+	padding-left:0;
+	margin-bottom:0;
+}
+.price_menu ul li
+{
+	list-style:none;
+	background:#339999;
+	padding:0px 10px;
+	border-radius:6px;
+	margin:4px 0;
+	padding-left:30px !important;
+}
+.first_price
+{
+	font-size:18px;
+	color:#FFF;
+	font-weight:500;
+	margin-top:0 !important;
+}
+.first_price span
+{
+	color:#ffff00 ;
+	font-size:18px;
+	font-weight:500;
+	float:right;
+	margin-top:-4px;
+	margin-right:50px;
+}
+.first_price small {
+    display: block;
+    font-size: 9px;
+    position: absolute;
+    right: 65px;
+    top: 19px;
+}
+.extra
+{
+	background:#FFF !important;
+	text-align:right;
+	font-weight:600;
+	color:#666666;
+	margin-right:50px !important;
+}
+.other_price
+{
+	font-size:18px;
+	color:#FFF;
+	font-weight:500;
+}
+.other_price
+{
+	padding-left:30px !important;
+}
+.other_price small {
+    font-size: 9px;
+	position:relative;
+	top:-2px;
+	margin-left:40px;
+}
+.other_price span
+{
+	color:#ffff00 ;
+	font-size:14px;
+	font-weight:600;
+	float:right;
+	margin-top:2px;
+	margin-right:50px;
+}
+.select_pizza
+{
+	background:url(../images/pizza_item.png) no-repeat scroll center top / 100% 100%;
+	width:270px;
+}
+.select_pizza {
+    position: absolute;
+    right: 42px;
+    top: 25px;
+}
+.select_pizza img
+{
+	padding:25px 8px;
+}
+.add_to_cart {
+    background: #333 none repeat scroll 0 0;
+    border-radius: 0 0 15px 15px;
+    margin-left: 48px;
+    margin-top: 40px;
+    padding: 8px 22px;
+    width: 350px;
+	opacity: 0.6;
+}
+.add_to_cart li
+{
+	display:inline-block;
+	color:#FFF;
+	font-size:18px;
+}
+.add_to_cart span
+{
+	color:#ffff00 ;
+	font-size:14px;
+	font-weight:600;
+	margin-left:30px;
+}
+.add_to_cart ul li a
+{
+	color:#FFF;
+	background:#ff0000;
+	font-size:15px;
+	font-weight:600;
+	padding:3px 30px;
+	border:1px solid #9c0a0d;
+	border-radius:12px;
+}
+.add_to_cart ul {
+    margin-bottom: 0;
+    padding-left: 0;
+}
+.cart_btn
+{
+	float:right;
+}
+.ingredient
+{
+	background:url(../images/ingredient.png) no-repeat scroll center top / 92% 92%;
+	height:280px;
+	margin-top:35px;
+}
+.small_btn
+{
+	float:left;
+	padding-left:60px;
+	margin-top:15px;
+}
+.small_btn li
+{
+	list-style:none;
+	margin-bottom:2px;
+}
+.small_btn li a
+{
+	font-size:11px !important;
+	font-weight:600;
+	color:#FFF;
+	background:#ff6600;
+	padding:0px 15px;
+	border-radius:10px;
+}
+.half_section
+{
+	margin-left:50px;
+}
+.ingredient h4
+{
+	color:#FFF;
+	font-weight:bold;
+	font-size:22px;
+	text-align:center;
+	margin:2px;
+}
+.item_list li
+{
+	list-style:none;
+	font-size:11px !important;
+	color:#da0d12;
+	text-align:right;
+	font-weight:600;
+	line-height:21.5px;
+}
+.item_list
+{
+	margin-top:46px;
+}

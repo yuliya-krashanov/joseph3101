@@ -1,6 +1,6 @@
 <?php
 
-namespace pizza\Jobs;
+namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
 

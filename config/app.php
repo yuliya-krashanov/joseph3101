@@ -140,10 +140,11 @@ return [
         /*
          * Application Service Providers...
          */
-        pizza\Providers\AppServiceProvider::class,
-        pizza\Providers\AuthServiceProvider::class,
-        pizza\Providers\EventServiceProvider::class,
-        pizza\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
+        SleepingOwl\Admin\AdminServiceProvider::class,
 
       //  Aimeos\Shop\ShopServiceProvider::class,
 
@@ -195,6 +196,16 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+
+        'Admin'         => SleepingOwl\Admin\Admin::class,
+        'AdminAuth'     => SleepingOwl\AdminAuth\Facades\AdminAuth::class,
+        'Column'        => SleepingOwl\Admin\Columns\Column::class,
+        'ColumnFilter'  => SleepingOwl\Admin\ColumnFilters\ColumnFilter::class,
+        'Filter'        => SleepingOwl\Admin\Filter\Filter::class,
+        'AdminDisplay'  => SleepingOwl\Admin\Display\AdminDisplay::class,
+        'AdminForm'     => SleepingOwl\Admin\Form\AdminForm::class,
+        'AdminTemplate' => SleepingOwl\Admin\Templates\Facade\AdminTemplate::class,
+        'FormItem'      => SleepingOwl\Admin\FormItems\FormItem::class,
 
     ],
 

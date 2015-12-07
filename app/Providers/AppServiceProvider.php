@@ -1,6 +1,6 @@
 <?php
 
-namespace pizza\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
