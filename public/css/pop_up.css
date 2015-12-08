@@ -84,7 +84,7 @@
 /*-------------Menu Market------------*/
 .small_popup
 {
-	background:url(../images/pizza_popup.png) no-repeat scroll center top / 100% 100%;
+	background:url(../../images/pizza_popup.png) no-repeat scroll center top / 100% 100%;
 	height:250px;
 }
 .small_popup img {
@@ -167,7 +167,7 @@ p.no-yes-btn {
 /*-------------Home Deal Pop-up-------------------------------*/
 .small_popup_home
 {
-	background:url(../images/home-deal.png) no-repeat scroll center top / 100% 100%;
+	background:url(../../images/home-deal.png) no-repeat scroll center top / 100% 100%;
 	height:270px;
 }
 .small_popup_home img {
@@ -254,7 +254,7 @@ p.no-yes-btn_home {
 /*------------------------Menu Order---------------------------*/
 .order_box
 {
-	background:url(../images/add-to-cart-pop-up.png) no-repeat scroll center top / 100% 100%;
+	background:url(../../images/add-to-cart-pop-up.png) no-repeat scroll center top / 100% 100%;
 	height:600px;
 }
 .price_menu
@@ -339,7 +339,7 @@ p.no-yes-btn_home {
 }
 .select_pizza
 {
-	background:url(../images/pizza_item.png) no-repeat scroll center top / 100% 100%;
+	background:url(../../images/pizza_item.png) no-repeat scroll center top / 100% 100%;
 	width:270px;
 }
 .select_pizza {
@@ -393,7 +393,7 @@ p.no-yes-btn_home {
 }
 .ingredient
 {
-	background:url(../images/ingredient.png) no-repeat scroll center top / 92% 92%;
+	background:url(../../images/ingredient.png) no-repeat scroll center top / 92% 92%;
 	height:280px;
 	margin-top:35px;
 }

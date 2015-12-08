@@ -239,7 +239,7 @@
         padding: 0;
         position: absolute;
         width: 100%;
-        z-index: 999999999;
+        z-index: 9;
     }
     .navbar-nav {
         display: block;
@@ -344,7 +344,7 @@
         padding: 0;
         position: absolute;
         width: 100%;
-        z-index: 999999999;
+        z-index: 9;
     }
     .navbar-nav {
         display: block;
@@ -464,7 +464,7 @@
       position: relative;
       text-align: right;
       width: auto;
-      z-index: 999;
+      z-index: 9;
     }
     .table-responsive.payment {
       background: #fff none repeat scroll 0 0;
@@ -705,7 +705,7 @@ footer {
 .main-page
 {
 	min-height:760px;
-	z-index:9999;
+	z-index:9;
 }
 
 /*----------About-Us-------*/
@@ -741,7 +741,7 @@ footer {
   position: relative;
   text-align: right;
   width: auto;
-  z-index: 999;
+  z-index: 9;
 }
 .friend-content {
   color: #fff;
@@ -1134,7 +1134,7 @@ footer {
 }
 .main-page {
   min-height: 500px !important;
-  z-index: 9999;
+  z-index: 9;
 }
 .position4 {
     color: #fff;

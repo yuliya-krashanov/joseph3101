@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="_token" content="{!! csrf_token() !!}"/>
     <link rel="icon" href="../../favicon.ico">
     <title> @yield('page-title') </title>
 
@@ -80,5 +81,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 {{--<script src="{{ asset('js/ie10-viewport-bug-workaround.js') }}"></script>--}}
 <script src="{{ elixir('js/all.js') }}"></script>
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+    });
+</script>
 </body>
 </html>

@@ -146,6 +146,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         SleepingOwl\Admin\AdminServiceProvider::class,
 
+        Illuminate\Html\HtmlServiceProvider::class,
+
       //  Aimeos\Shop\ShopServiceProvider::class,
 
     ],
@@ -206,6 +208,9 @@ return [
         'AdminForm'     => SleepingOwl\Admin\Form\AdminForm::class,
         'AdminTemplate' => SleepingOwl\Admin\Templates\Facade\AdminTemplate::class,
         'FormItem'      => SleepingOwl\Admin\FormItems\FormItem::class,
+
+        'Form' => Illuminate\Html\FormFacade::class,
+        'Html' => Illuminate\Html\HtmlFacade::class,
 
     ],
 

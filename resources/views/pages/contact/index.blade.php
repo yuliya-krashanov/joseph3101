@@ -10,6 +10,21 @@
             font-size: 36px;
         }
     </style>
+    <div class="deal popup {{ $popup }}">
+
+        <div class="small_popup_home">
+            <img src="{{ asset('images/home--pizza.png') }}" alt="">
+            <h1 class="doller_price home">$10</h1>
+            <span class="deal_home" dir="ltr">Big deal!</span>
+            <h2 class="greek_home">"hawaii"</h2>
+            <small class="pop-small_home"> Pizza dough with tomato sauce, ham Pure nature, pineapple and Gouda cheese</small>
+            <p class="no-yes-btn_home">
+                <button class="sm_button yes-add_home home-popup-button" data-value="get">Get Deal</button>
+                <button class="sm_button no-thank_home home-popup-button" data-value="no">No, Thanks</button>
+            </p>
+        </div>
+
+    </div>
     @parent
 @endsection
 
@@ -39,24 +54,34 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="content_from">
                             <div class="from-area">
-                                <form method="post" action="contact-form-handler.php">
-                                    <p>
-                                        <input type="text" value="" name="name" class="aqua_input" id="author" placeholder="Full Name*">
-                                    </p>
-                                    <p>
 
-                                        <input type="email" value="" name="email" class="aqua_input" id="email" placeholder="Phone Number*">
+                                @if ($errors->any())
+                                    <ul class="alert alert-danger">
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+
+                                {!! Form::open(['route' => 'contactCreate']) !!}
+                                    <p>
+                                        {!! Form::text('name', null, ['class' => 'aqua_input', 'id' => 'author', 'placeholder' => 'Full Name*' ]) !!}
                                     </p>
                                     <p>
-                                        <input type="text" value="" name="contact_number" class="aqua_input" id="contact_number" placeholder="Issue*">
+                                        {!! Form::email('email', null, ['class' => 'aqua_input', 'id' => 'email', 'placeholder' => 'Email*']) !!}
                                     </p>
                                     <p>
-                                        <textarea name="message" class="aqua_input_msg" rows="8" id="comment" placeholder="Message*"></textarea>
+                                        {!! Form::text('phone', null, ['class' => 'aqua_input', 'id' => 'contact_number', 'placeholder' => 'Phone Number*']) !!}
                                     </p>
                                     <p>
-                                        <input type="submit" class="sm_button" value="Send" id="submit" name="submit">
+                                        {!! Form::textarea('message', null, ['class' => 'aqua_input_msg', 'id' => 'comment', 'placeholder' => 'Message*', 'rows' => 8]) !!}
                                     </p>
-                                </form>
+                                    <p>
+                                        {!! Form::submit('Send', ['class' => 'sm_button', 'id' => 'submit']) !!}
+                                    </p>
+
+                                {!! Form::close() !!}
+
                             </div>
                         </div>
                     </div>

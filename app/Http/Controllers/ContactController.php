@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\ContactForm;
 
 class ContactController extends Controller
 {
@@ -16,7 +17,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('pages.contact.index');
+
+        return view('pages.contact.index', ['popup' => '' ]);
     }
 
     /**
@@ -25,9 +27,18 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
-        return view('pages.contact.thankyou');
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'message' => 'required'
+        ]);
+
+        ContactForm::create($request->all());
+
+        return view('pages.contact.index', ['popup' => 'show' ]);
     }
 
 }

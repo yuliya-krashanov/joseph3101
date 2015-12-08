@@ -17,5 +17,6 @@ Route::get('/', 'HomeController@index');
 
 Route::get('about', 'AboutController@index');
 Route::get('contact', 'ContactController@index');
+Route::post('contact', ['uses' => 'ContactController@create', 'as' => 'contactCreate']);
 
-
+Route::post('/', ['uses' => 'HomeController@approvePopup', 'as' => 'approveHomePopup']);
