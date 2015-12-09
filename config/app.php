@@ -147,8 +147,12 @@ return [
         SleepingOwl\Admin\AdminServiceProvider::class,
 
         Illuminate\Html\HtmlServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
-      //  Aimeos\Shop\ShopServiceProvider::class,
+        Jenssegers\Agent\AgentServiceProvider::class,
+
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        //  Aimeos\Shop\ShopServiceProvider::class,
 
     ],
 
@@ -209,8 +213,16 @@ return [
         'AdminTemplate' => SleepingOwl\Admin\Templates\Facade\AdminTemplate::class,
         'FormItem'      => SleepingOwl\Admin\FormItems\FormItem::class,
 
+
+        // illuminate/html
         'Form' => Illuminate\Html\FormFacade::class,
         'Html' => Illuminate\Html\HtmlFacade::class,
+
+        // intervention/image
+        'Image' => Intervention\Image\Facades\Image::class,
+
+        // jenssengers/agent
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
 
     ],
 

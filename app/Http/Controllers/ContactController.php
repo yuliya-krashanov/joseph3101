@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+
 use App\Http\Controllers\Controller;
 use App\ContactForm;
 
@@ -36,7 +37,13 @@ class ContactController extends Controller
             'message' => 'required'
         ]);
 
-        ContactForm::create($request->all());
+        $contactForm = ContactForm::create($request->all());
+
+        \Mail::send('emails.contact', ['contactForm' => $contactForm], function ($message) use ($contactForm) {
+            $message->from($contactForm->email, 'Pizza');
+            $message->to('yuliya-krashanov@yandex.ua', 'Yuliya')->subject('Pizza | New message from client');
+
+        });
 
         return view('pages.contact.index', ['popup' => 'show' ]);
     }

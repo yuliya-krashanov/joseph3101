@@ -20,3 +20,6 @@ Route::get('contact', 'ContactController@index');
 Route::post('contact', ['uses' => 'ContactController@create', 'as' => 'contactCreate']);
 
 Route::post('/', ['uses' => 'HomeController@approvePopup', 'as' => 'approveHomePopup']);
+
+Route::get('/friends-club', 'FriendsController@index' );
+Route::get('/friends-club/register', ['uses' => 'FriendsController@register', 'as' => 'friends_club_register']);

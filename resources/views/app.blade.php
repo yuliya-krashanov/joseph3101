@@ -49,9 +49,9 @@
                                 <li class="sales"><a href="#">Sales/Coupon</a></li>
                                 <li class="order"><a href="#">Order Now</a></li>
                                 <li class="menu"><a href="#">Menu</a></li>
-                                <li class="friends"><a href="#">Friends Club</a></li>
+                                <li class="friends"><a href="{{ url('friends-club') }}">Friends Club</a></li>
                                 <li class="about"><a href="{{ url('about') }}">About Us</a></li>
-                                <li class="home act"><a href="{{ url('/') }}">Home</a></li>
+                                <li class="home"><a href="{{ url('/') }}">Home</a></li>
                             </ul>
                         </div>
                     </nav>
@@ -78,13 +78,13 @@
 @show
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-{{--<script src="{{ asset('js/ie10-viewport-bug-workaround.js') }}"></script>--}}
-<script src="{{ elixir('js/all.js') }}"></script>
-<script type="text/javascript">
-    $.ajaxSetup({
-        headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
-    });
-</script>
-</body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        {{--<script src="{{ asset('js/ie10-viewport-bug-workaround.js') }}"></script>--}}
+        <script src="{{ elixir('js/all.js') }}"></script>
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+            });
+        </script>
+    </body>
 </html>

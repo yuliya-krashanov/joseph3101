@@ -121,4 +121,9 @@ return [
 
     'pretend' => false,
 
+    'to' => [
+        'address' => 'yuliya-krashanov@yandex.ua',
+        'name' => 'Dev Example'
+    ],
+
 ];

@@ -1,3 +1,20 @@
+.sm_button.friend,
+.sm_button.friend-footbtn {
+  text-align: center;
+}
+
+.sm_button.friend a,
+.sm_button.friend-footbtn a {
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+}
+
+.sm_button.friend a:hover,
+.sm_button.friend-footbtn a:hover {
+  text-decoration: none;
+}
+
 .popup {
   display: -webkit-flex;
   display: -ms-flexbox;

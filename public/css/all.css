@@ -9389,7 +9389,6 @@ body.friendclub {
   color: #fffffe;
   margin: 0 auto !important;
   position: relative;
-  right: 18%;
   top: 150px;
   width: 60%;
   box-shadow: 5px 4px 2px #111;
@@ -10926,7 +10925,6 @@ p.no-yes-btn_home {
     color: #fffffe;
     margin: 0 auto !important;
     position: relative;
-    right: 18%;
     top: 160px;
     width: 60%;
   }
@@ -11398,6 +11396,23 @@ p.no-yes-btn_home {
     width: 33%;
   }
 }
+.sm_button.friend,
+.sm_button.friend-footbtn {
+  text-align: center;
+}
+
+.sm_button.friend a,
+.sm_button.friend-footbtn a {
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+}
+
+.sm_button.friend a:hover,
+.sm_button.friend-footbtn a:hover {
+  text-decoration: none;
+}
+
 .popup {
   display: -webkit-flex;
   display: -ms-flexbox;

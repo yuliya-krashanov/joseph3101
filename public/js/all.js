@@ -9,6 +9,8 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 
 $(document).ready(function(){
 
+    changeActiveItemMenu();
+
     $('.home-popup-button').on('click', function(){
 
         var todo = $(this).attr('data-value');
@@ -33,4 +35,15 @@ $(document).ready(function(){
 
 });
 
+
+function changeActiveItemMenu(){
+
+    var href = ( window.location.pathname == '/') ? window.location.origin : window.location.href;
+
+    $('#navbar ul li a').each(function(){
+        if ( $(this).attr('href') == href ){
+            $(this).parent().addClass('act');
+        }
+    });
+}
 //# sourceMappingURL=all.js.map
