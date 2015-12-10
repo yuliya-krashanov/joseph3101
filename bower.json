@@ -1,0 +1,14 @@
+{
+  "name": "pizza",
+  "description": "pizza 3101",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "vendor/bower_dl",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+
+  }
+}

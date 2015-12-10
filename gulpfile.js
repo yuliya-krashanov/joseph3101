@@ -1,3 +1,4 @@
+var gulp = require('gulp');
 var elixir = require('laravel-elixir');
 
 /*
@@ -10,6 +11,19 @@ var elixir = require('laravel-elixir');
  | file for our application, as well as publishing vendor resources.
  |
  */
+
+/**
+ * Copy any needed files.
+ *
+ * Do a 'gulp copyfiles' after bower updates
+ */
+gulp.task("copyfiles", function() {
+
+    gulp.src("vendor/bower_dl/typeahead.js/dist/typeahead.jquery.min.js")
+        .pipe(gulp.dest("public/js"));
+
+
+});
 
 elixir(function(mix) {
     mix.sass('app.scss');
@@ -27,6 +41,7 @@ elixir(function(mix) {
 
     mix.scripts([
         'bootstrap.min.js',
+        'typeahead.jquery.min.js',
         'app.js',
     ], null, 'public/js');
 

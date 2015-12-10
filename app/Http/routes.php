@@ -23,3 +23,7 @@ Route::post('/', ['uses' => 'HomeController@approvePopup', 'as' => 'approveHomeP
 
 Route::get('/friends-club', 'FriendsController@index' );
 Route::get('/friends-club/register', ['uses' => 'FriendsController@register', 'as' => 'friends_club_register']);
+Route::post('/friends-club/register', ['uses' => 'FriendsController@create', 'as' => 'member_create']);
+
+Route::get('menu', ['uses' => 'MenuController@index', 'as' => 'menu']);
+
