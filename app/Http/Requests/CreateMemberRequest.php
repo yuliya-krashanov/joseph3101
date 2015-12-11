@@ -27,8 +27,13 @@ class CreateMemberRequest extends Request
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
-
+            'address_city' => 'required',
+            'address_street' => 'required',
+            'address_street_number' => 'required',
+            'address_home_number' => 'required',
+            'partner_email' => 'email',
             'agree_policy' => 'accepted',
+            'mobile_phone' => 'required',
         ];
     }
 }

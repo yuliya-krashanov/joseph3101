@@ -233,7 +233,7 @@
                                             <!-- First -->
                                             <div class="col-md-6 no-padding">
                                                 <p class="allow">
-                                                    {!! Form::checkbox('send_to_mail', null, true, ['id' => 'send_to_mail']); !!}
+                                                    {!! Form::checkbox('send_to_mail', 1, true, ['id' => 'send_to_mail']); !!}
                                                     {!! Form::label('send_to_mail', 'Allow Joseph to send me sale deals and updates by email') !!}
                                                 </p>
                                             </div>
@@ -249,7 +249,7 @@
                                             <!-- second -->
                                             <div class="col-md-12">
                                                 <p class="allow">
-                                                    {!! Form::checkbox('send_to_mobile', 'Allow Joseph to send me sale deals and updates by mobile', true, ['id' => 'send_to_mobile']); !!}
+                                                    {!! Form::checkbox('send_to_mobile', 1, true, ['id' => 'send_to_mobile']); !!}
                                                     {!! Form::label('send_to_mobile', 'Allow Joseph to send me sale deals and updates by mobile') !!}
                                                 </p>
                                             </div>

@@ -15,7 +15,7 @@ class CreateMembersTable extends Migration
         Schema::create('members', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->integer('customer_id', false, true)->unique();
+            $table->integer('customer_id', false, true)->nullable()->unique();
             $table->string('first_name', 50);
             $table->string('last_name', 50);
             $table->string('address_city', 50);
@@ -35,7 +35,8 @@ class CreateMembersTable extends Migration
             $table->boolean('send_to_mail');
             $table->boolean('send_to_mobile');
 
-            $table->rememberToken();
+            $table->foreign('customer_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }
