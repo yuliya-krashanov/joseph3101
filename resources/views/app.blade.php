@@ -47,7 +47,7 @@
                             <ul class="nav navbar-nav">
                                 <li class="contact"><a href="{{ url('contact') }}">Contact Us</a></li>
                                 <li class="sales"><a href="#">Sales/Coupon</a></li>
-                                <li class="order"><a href="#">Order Now</a></li>
+                                <li class="order"><a href="javascript:void(0)">Order Now</a></li>
                                 <li class="menu"><a href="{{ url('menu') }}">Menu</a></li>
                                 <li class="friends"><a href="{{ url('friends-club') }}">Friends Club</a></li>
                                 <li class="about"><a href="{{ url('about') }}">About Us</a></li>

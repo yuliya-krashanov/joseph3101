@@ -36,12 +36,39 @@
     <div class="menu-footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 col-sm-12 col-md-12">
+                
+                <div class="col-lg-12 col-sm-12 col-md-12 ">
                     <!-------------->
-                    <div class="col-lg-2 col-sm-2 col-md-2"></div>
-                    <!-------------->
-                    <div class="col-lg-8 col-sm-8 col-md-8 main-menu-page">
-                        <div class="top_red"> <img src="{{ asset('images/red-image.png') }}" class="img-responsive"/> <h3>Pizzas</h3> </div>
+                    @if (Auth::check())
+                        <div class="col-lg-2 col-sm-2 col-md-2 pad-zero">
+                            <div class="ordered_item" dir="ltr">
+                                <h4 class="left_heading_text">Ordered Items</h4>
+                                <ul class="list">
+                                    <li><span>Margherita</span> $30 </li>
+                                    <li><span>Italiana</span> $20 </li>
+                                    <li><span>Coca-Cola</span> $2 </li>
+                                    <li><span>Ceasar Salad</span> $5 </li>
+                                    <li class="last">&nbsp;<span>&nbsp;</span></li>
+                                </ul>
+                                <!-------sub------>
+                                <ul class="list subtotal">
+                                    <li>$57 <span>Total</span></li>
+                                </ul>
+                                <div style="text-align:center;">
+                                <a class="place_my_order" href="#">Place my Order</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-md-8 main-menu-page cart">
+                    @else
+                        <div class="col-lg-2 col-sm-2 col-md-2"></div>
+                        <div class="col-lg-8 col-sm-8 col-md-8 main-menu-page">
+                    @endif
+                    <!-------------->                    
+                        <div class="top_red"> 
+                            <img src="{{ asset('images/red-image.png') }}" class="img-responsive"/> 
+                            <h3>Pizzas</h3> 
+                        </div>
                         <!-----1----->
                         <div class="pizza-box" dir="ltr">
                             <!--<img src="img/scroll.png" class="img-responsive" />-->

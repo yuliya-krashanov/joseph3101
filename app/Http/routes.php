@@ -14,12 +14,11 @@
 /* Static Pages */
 
 Route::get('/', 'HomeController@index');
+Route::post('/', ['uses' => 'HomeController@approvePopup', 'as' => 'approveHomePopup']);
 
 Route::get('about', 'AboutController@index');
 Route::get('contact', 'ContactController@index');
 Route::post('contact', ['uses' => 'ContactController@create', 'as' => 'contactCreate']);
-
-Route::post('/', ['uses' => 'HomeController@approvePopup', 'as' => 'approveHomePopup']);
 
 Route::get('/friends-club', 'FriendsController@index' );
 Route::get('/friends-club/register', ['uses' => 'FriendsController@register', 'as' => 'friends_club_register']);
@@ -27,3 +26,4 @@ Route::post('/friends-club/register', ['uses' => 'FriendsController@create', 'as
 
 Route::get('menu', ['uses' => 'MenuController@index', 'as' => 'menu']);
 
+Route::get('cart', ['uses' => 'CartController@index', 'as' => 'cart', 'middleware' => 'auth']);
