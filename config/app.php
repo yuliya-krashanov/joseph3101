@@ -203,16 +203,13 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
-        'Admin'         => SleepingOwl\Admin\Admin::class,
-        'AdminAuth'     => SleepingOwl\AdminAuth\Facades\AdminAuth::class,
-        'Column'        => SleepingOwl\Admin\Columns\Column::class,
-        'ColumnFilter'  => SleepingOwl\Admin\ColumnFilters\ColumnFilter::class,
-        'Filter'        => SleepingOwl\Admin\Filter\Filter::class,
-        'AdminDisplay'  => SleepingOwl\Admin\Display\AdminDisplay::class,
-        'AdminForm'     => SleepingOwl\Admin\Form\AdminForm::class,
-        'AdminTemplate' => SleepingOwl\Admin\Templates\Facade\AdminTemplate::class,
-        'FormItem'      => SleepingOwl\Admin\FormItems\FormItem::class,
-
+        'Admin'                => SleepingOwl\Admin\Admin::class,
+        'AdminAuth'            => SleepingOwl\AdminAuth\Facades\AdminAuth::class,
+        'AdminRouter'          => SleepingOwl\Admin\Facades\AdminRouter::class,
+        'AssetManager'         => SleepingOwl\Admin\AssetManager\AssetManager::class,
+        'Column'               => SleepingOwl\Admin\Columns\Column::class,
+        'FormItem'             => SleepingOwl\Admin\Models\Form\FormItem::class,
+        'ModelItem'            => SleepingOwl\Admin\Models\ModelItem::class,
 
         // illuminate/html
         'Form' => Illuminate\Html\FormFacade::class,

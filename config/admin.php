@@ -5,57 +5,55 @@ return [
 	 * Admin title
 	 * Displays in page title and header
 	 */
-	'title'                   => 'Sleeping Owl administrator',
+	'title'                 => 'Sleeping Owl administrator',
 
 	/*
 	 * Admin url prefix
 	 */
-	'prefix'                  => 'admin',
+	'prefix'                => 'admin',
 
 	/*
-	 * Middleware to use in admin routes
+	 * Before filters to protect admin from unauthorized users
 	 */
-	'middleware'              => ['admin.auth'],
+	'beforeFilters'         => ['admin.auth'],
 
 	/*
-	 * Path to admin bootstrap files directory
-	 * Default: app_path('Admin')
+	 * Path to admin bootstrap files directory in app directory
+	 * Default: 'app/admin'
 	 */
-	'bootstrapDirectory'      => app_path('Admin'),
+	'bootstrapDirectory'    => app_path('admin'),
 
 	/*
-	 * Directory to upload images to (relative to public directory)
+	 * Path to images directory
+	 * Default: 'public/images'
 	 */
-	'imagesUploadDirectory' => 'images/uploads',
+	'imagesDirectory'       => public_path('images'),
+
+	/*
+	 * Path to files directory
+ 	 * Default: 'public/files'
+ 	 */
+	'filesDirectory'        => public_path('files'),
+
+	/*
+	 * Path to images upload directory within 'imagesDirectory'
+	 * Default: 'uploads'
+	 */
+	'imagesUploadDirectory' => 'uploads',
 
 	/*
 	 * Authentication config
 	 */
-	'auth'                    => [
-		'model' => '\SleepingOwl\AdminAuth\Entities\Administrator',
+	'auth'                  => [
+		'model'  => '\SleepingOwl\AdminAuth\Entities\Administrator',
 		'rules' => [
 			'username' => 'required',
 			'password' => 'required',
 		]
 	],
 
-	/*
-	 * Template to use
+    /*
+	 * Blade template prefix, default admin::
 	 */
-	'template'                => 'SleepingOwl\Admin\Templates\TemplateDefault',
-
-	/*
-	 * Default date and time formats
-	 */
-	'datetimeFormat'          => 'd.m.Y H:i',
-	'dateFormat'              => 'd.m.Y',
-	'timeFormat'              => 'H:i',
-
-	/*
-	 * If you want, you can extend ckeditor default configuration
-	 * with this PHP Hash variable.
-	 *
-	 * Checkout http://docs.ckeditor.com/#!/api/CKEDITOR.config for more information.
-	 */
-	'ckeditor' => [],
+    'bladePrefix'                => 'admin::',
 ];
