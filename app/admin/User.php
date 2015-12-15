@@ -6,7 +6,10 @@
  */
 
 // Create admin model from User class with title and url alias
-Admin::model('\User')->title('Users')->as('users-alias-name')->denyCreating(function ()
+Admin::model(\App\User::class)
+    ->title('Users')
+    ->as('users')
+->denyCreating(function ()
 {
 	// Deny creating on thursday
 	return date('w') == 4;
@@ -17,8 +20,15 @@ Admin::model('\User')->title('Users')->as('users-alias-name')->denyCreating(func
 })->columns(function ()
 {
 	// Describing columns for table view
-	Column::string('name', 'Name');
-	Column::string('email', 'Email');
+	Column::string('first_name', 'First Name');
+    Column::string('last_name', 'Last Name');
+    Column::string('phone', 'Phone');
+    Column::string('address_city', 'City');
+    Column::string('address_street', 'Street');
+    Column::string('address_street_number', 'Street Number');
+    Column::string('address_home_number', 'Home Number');
+    Column::string('address_floor', 'Floor');
+
 })->form(function ()
 {
 	// Describing elements in create and editing forms

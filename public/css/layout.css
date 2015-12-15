@@ -571,7 +571,7 @@ body.menu_item
 	padding:0 32px;
 	border-right:1px solid #f1f1f1;
 }
-.orange_clr a {
+.sub_menu li.active a {
 	background:#ff9900;
 	padding:1px 12px !important;
 	border-radius:5px;

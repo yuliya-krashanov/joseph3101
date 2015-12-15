@@ -15,11 +15,11 @@
             <div class="col-lg-2 col-sm-2 col-md-2"></div>
             <div class="col-lg-8 col-sm-8 col-md-8">
                 <ul class="sub_menu">
-                    <li class="orange_clr"><a href="#">Pizzas</a></li>
-                    <li><a href="#">Salads</a></li>
-                    <li><a href="#">Pastas</a></li>
-                    <li><a href="#">Pastries</a></li>
-                    <li><a href="#">Drinks</a></li>
+                    <li class="active"><a href="#" id="pizzas">Pizzas</a></li>
+                    <li><a href="#" id="salads">Salads</a></li>
+                    <li><a href="#" id="pastas">Pastas</a></li>
+                    <li><a href="#" id="pastries">Pastries</a></li>
+                    <li><a href="#" id="drinks">Drinks</a></li>
                 </ul>
             </div>
             <div class="col-lg-2 col-sm-2 col-md-2 logo">
@@ -70,7 +70,7 @@
                             <h3>Pizzas</h3> 
                         </div>
                         <!-----1----->
-                        <div class="pizza-box" dir="ltr">
+                        <div id="pizzas-tab" class="pizza-box menu-tab active" dir="ltr">
                             <!--<img src="img/scroll.png" class="img-responsive" />-->
                             <div class="col-lg-5 col-sm-5 col-md-5">
                                 <div class="pizza"> <img src="{{ asset('images/pizza-1.png') }}" class="img-responsive"/> </div>
@@ -161,6 +161,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="salads-tab" class="salads-box menu-tab" dir="ltr"></div>
+                        <div id="pastas-tab" class="pastas-box menu-tab" dir="ltr"></div>
+                        <div id="pastries-tab" class="pastries-box menu-tab" dir="ltr"></div>
+                        <div id="drinks-tab" class="drinks-box menu-tab" dir="ltr"></div>
+
                         <div class="clearfix"></div>
                         <div class="pad-20"></div>
                         <!-------------->

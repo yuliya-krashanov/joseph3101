@@ -20,6 +20,61 @@ $(document).ready(function(){
 
     autocompleteCityandStreet();
 
+    $('.navbar li.order a').on('click', function(){
+        var orderPopup = '<div class="big_popup">' +
+        + '<div class="container">' +
+            '<div class="row">' +
+            '   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">' +
+            '       <div class="left-image">' +
+            '           <h2>Delivery Details</h2>' +
+            '           <img src="img/pizza-pack.png" class="img-responsive"/>' +
+            '        </div>' +
+            '   </div>  ' +
+    '            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">' +
+    '               <div class="mobile_number_box">' +
+    '                    <input id="author" class="popup_input" name="name" type="text" placeholder="Mobile/Phone Number"/>' +
+    '               </div>' +
+    '               <div class="first_last">' +
+    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+    '                        <input id="author" class="name_input" name="name" type="text" placeholder="Last Name"/>' +
+    '                    </div> ' +
+    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+    '                        <input id="author" class="name_input" name="name" type="text" placeholder="First Name"/>' +
+    '                    </div>' +
+    '               </div>' +
+    '               <div class="clearfix"></div>' +
+    '               <div class="contineue">     ' +
+    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
+    '                        <input id="author" class="name_input" name="name" type="text" placeholder="Last Name"/>' +
+    '                    </div>                    ' +
+    '                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
+    '                        <input id="author" class="name_input" name="name" type="text" placeholder="City"/>' +
+    '                    </div>  ' +
+    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
+    '                        <input id="author" class="name_input" name="name" type="text" placeholder="Street Number"/>' +
+    '                    </div>                    ' +
+    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
+    '                        <input id="author" class="name_input" name="name" type="text" placeholder="Street"/>' +
+    '                    </div>                    ' +
+    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
+    '                        <input id="author" class="name_input" name="name" type="text" placeholder="Floor"/>' +
+    '                    </div>' +
+    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
+    '                        <input id="author" class="name_input" name="name" type="text" placeholder="Entrance"/>' +
+    '                    </div>' +
+    '                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
+    '                       <textarea id="comment" rows="8" class="aqua_input_comments" name="message" placeholder="Comments"></textarea>' +
+    '                    <div style="text-align:center">' +
+    '                        <a href="#" class="contineue_btn">Continue</a>' +
+    '                    </div>    ' +
+    '                </div> ' +
+    '          </div>' +
+            '</div>' +
+     '</div>' +
+     '</div>' +
+     '</div>';
+    });
+
     $('.home-popup-button').on('click', function(){
 
         var todo = $(this).attr('data-value');
@@ -43,12 +98,22 @@ $(document).ready(function(){
     });
 
     $('.friend_from select#status').on('change', function(){
-        console.log($(this).val());
+
         if ($(this).val() == 'married')
             $('.friend_from .friend-register.partner').show();
         else
             $('.friend_from .friend-register.partner').hide();
 
+    });
+
+    $('.menu_page_color .sub_menu li a').on('click', function(e){
+        e.preventDefault();
+        var category = $(this).attr('id');
+        var categ_name = $(this).text();
+        $(this).parent().addClass('active').siblings('li').removeClass('active');
+        $('.main-menu-page .menu-tab').removeClass('active');
+        $('.main-menu-page .top_red h3').text(categ_name);
+        $('#' + category + '-tab').addClass('active');
     });
 
 });

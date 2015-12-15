@@ -15,4 +15,17 @@
  * 		});
  */
 
+//use User;
+
 Admin::menu()->url('/')->label('Start page')->icon('fa-dashboard')->uses('\SleepingOwl\Admin\Controllers\DummyController@getIndex');
+
+//Admin::menu()->url('/')->label('Start Page')->icon('fa-dashboard')->uses('\App\HTTP\Controllers\AdminController@getIndex');
+Admin::menu(\App\User::class)->icon('fa-user');
+Admin::menu(\App\Product::class)->icon('fa-shopping-cart');
+Admin::menu(\App\Category::class)->icon('fa-shopping-cart');
+Admin::menu(\App\AdditionalCategory::class)->icon('fa-shopping-cart');
+//Admin::menu()->label('Subitems')->icon('fa-book')->items(function ()
+//{
+//    Admin::menu(\Acme\Models\Bar\User::class)->icon('fa-user');
+//    Admin::menu(\Acme\Models\Foo::class)->label('my label');
+//});

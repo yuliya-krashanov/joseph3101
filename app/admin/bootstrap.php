@@ -21,3 +21,5 @@
  * 		});
  */
 
+
+Column::register('boolean', \App\BooleanColumn::class);

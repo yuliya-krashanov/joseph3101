@@ -9009,7 +9009,7 @@ body.menu_item {
   border-right: 1px solid #f1f1f1;
 }
 
-.orange_clr a {
+.sub_menu li.active a {
   background: #ff9900;
   padding: 1px 12px !important;
   border-radius: 5px;
@@ -11479,6 +11479,17 @@ p.no-yes-btn_home {
 
 .tt-suggestion p {
   margin: 0;
+}
+
+.main-menu-page .menu-tab {
+  opacity: 0;
+  visibility: hidden;
+  transition: all ease 0.5ms;
+}
+
+.main-menu-page .active.menu-tab {
+  opacity: 1;
+  visibility: visible;
 }
 
 .popup {

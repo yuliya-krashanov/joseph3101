@@ -1,0 +1,18 @@
+%dynamic-opacity{
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all ease 0.5ms;
+  -moz-transition: all ease 0.5ms;
+  -ms-transition: all ease 0.5ms;
+  -o-transition: all ease 0.5ms;
+  transition: all ease 0.5ms;
+  &.active{
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+
+.main-menu-page .menu-tab{
+  @extend %dynamic-opacity;
+}
