@@ -13,7 +13,7 @@ $(document).ready(function(){
             '   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">' +
             '       <div class="left-image">' +
             '           <h2>Delivery Details</h2>' +
-            '           <img src="img/pizza-pack.png" class="img-responsive"/>' +
+            '           <img src="images/pizza-pack.png" class="img-responsive"/>' +
             '        </div>' +
             '   </div>  ' +
     '            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">' +
