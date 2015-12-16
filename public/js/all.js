@@ -21,13 +21,13 @@ $(document).ready(function(){
     autocompleteCityandStreet();
 
     $('.navbar li.order a').on('click', function(){
-        var orderPopup = '<div class="big_popup">' +
-        + '<div class="container">' +
+        var orderPopup = '<div class="auth_popup show"><div class="big_popup">' +
+
             '<div class="row">' +
             '   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">' +
             '       <div class="left-image">' +
             '           <h2>Delivery Details</h2>' +
-            '           <img src="img/pizza-pack.png" class="img-responsive"/>' +
+            '           <img src="images/pizza-pack.png" class="img-responsive"/>' +
             '        </div>' +
             '   </div>  ' +
     '            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">' +
@@ -69,10 +69,11 @@ $(document).ready(function(){
     '                    </div>    ' +
     '                </div> ' +
     '          </div>' +
-            '</div>' +
      '</div>' +
      '</div>' +
      '</div>';
+
+     $('body').prepend(orderPopup);
     });
 
     $('.home-popup-button').on('click', function(){

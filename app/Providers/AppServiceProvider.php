@@ -13,7 +13,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \App\Category::saving(function($category){
+           $category->slug = str_slug($category->title);
+        });
+        \App\AdditionalCategory::saving(function($category){
+           $category->slug = str_slug($category->title);
+        });
+        \App\AdditionalCategory::saving(function($category){
+           $category->slug = str_slug($category->title);
+        });
     }
 
     /**

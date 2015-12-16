@@ -23,3 +23,5 @@
 
 
 Column::register('boolean', \App\BooleanColumn::class);
+//FormItem::register('multiSelect2', \App\MultiSelect2::class);
+

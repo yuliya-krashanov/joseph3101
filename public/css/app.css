@@ -94,6 +94,7 @@
   visibility: visible;
 }
 
+.auth_popup,
 .popup {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -106,6 +107,7 @@
   justify-content: center;
 }
 
+.auth_popup,
 .popup {
   position: absolute;
   visibility: hidden;
@@ -116,9 +118,14 @@
   z-index: 10;
 }
 
+.show.auth_popup,
 .show.popup {
   opacity: 1;
   visibility: visible;
+}
+
+.auth_popup .big_popup {
+  width: 600px;
 }
 
 .popup .small_popup_home {

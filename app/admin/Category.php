@@ -13,6 +13,7 @@ Admin::model(\App\Category::class)
     })->columns(function ()
     {
         // Describing columns for table view
+        Column::string('id', 'ID');
         Column::string('title', 'Title');
         Column::string('slug', 'Slug');
 
@@ -20,4 +21,5 @@ Admin::model(\App\Category::class)
     {
         // Describing elements in create and editing forms
         FormItem::text('title', 'Title')->required();
+        FormItem::hidden('slug');
     });

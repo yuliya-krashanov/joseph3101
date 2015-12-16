@@ -13,6 +13,7 @@ Admin::model(\App\AdditionalCategory::class)
     })->columns(function ()
     {
         // Describing columns for table view
+        Column::string('id', 'ID');
         Column::string('title', 'Title');
         Column::string('slug', 'Slug');
 
