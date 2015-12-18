@@ -44,18 +44,21 @@
                             <div class="ordered_item" dir="ltr">
                                 <h4 class="left_heading_text">Ordered Items</h4>
                                 <ul class="list">
-                                    <li><span>Margherita</span> $30 </li>
-                                    <li><span>Italiana</span> $20 </li>
-                                    <li><span>Coca-Cola</span> $2 </li>
-                                    <li><span>Ceasar Salad</span> $5 </li>
+                                    @foreach($cart as $item)
+                                        <li><span>{{ $cart->product->title }}</span>{{ $cart->price }}$</li>
+                                    @endforeach
                                     <li class="last">&nbsp;<span>&nbsp;</span></li>
                                 </ul>
                                 <!-------sub------>
                                 <ul class="list subtotal">
-                                    <li>$57 <span>Total</span></li>
+                                    <li>{{  Cart::total() }}$<span>Total</span></li>
                                 </ul>
                                 <div style="text-align:center;">
-                                <a class="place_my_order" href="#">Place my Order</a>
+                                    @if ( Cart::total() >= 40 )
+                                        <a class="place_my_order" href="#">Place my Order</a>
+                                    @else
+                                        <p class="place_my_order">Minimum order 40NIS</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>

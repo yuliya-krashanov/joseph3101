@@ -23,6 +23,63 @@
 
 
 @section('header')
+
+    @if (Auth::guest())
+        <div class="auth_popup">
+            <div class="big_popup">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="left-image">
+                            <h2>Delivery Details</h2>
+                            <img src="{{ asset('images/pizza-pack.png') }}" class="img-responsive"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        {!! Form::open(['route' => 'authUser']) !!}
+                            <div class="mobile_number_box">
+                                {!! Form::text('phone', null, ['class' => 'popup_input', 'placeholder' => 'Mobile/Phone Number', 'required' => 'required']) !!}
+                            </div>
+                            <div class="first_last">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {!! Form::text('last_name', null, ['class' => 'name_input', 'placeholder' => 'Last Name', 'required' => 'required']) !!}
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {!! Form::text('first_name', null, ['class' => 'name_input', 'placeholder' => 'First Name', 'required' => 'required']) !!}
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="contineue">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">
+                                    {!! Form::text('street', null, ['class' => 'name_input', 'placeholder' => 'Street', 'required' => 'required']) !!}
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">
+                                    {!! Form::text('city', null, ['class' => 'name_input', 'placeholder' => 'City', 'required' => 'required']) !!}
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">
+                                    {!! Form::text('home_number', null, ['class' => 'name_input', 'placeholder' => 'Home Number', 'required' => 'required']) !!}
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">
+                                    {!! Form::text('street_number', null, ['class' => 'name_input', 'placeholder' => 'Street Number', 'required' => 'required']) !!}
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">
+                                    {!! Form::text('floor', null, ['class' => 'name_input', 'placeholder' => 'Floor', 'required' => 'required']) !!}
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">
+                                    <input class="name_input" name="entrance" type="text" placeholder="Entrance"/>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <textarea id="comment" rows="8" class="aqua_input_comments" name="message" placeholder="Comments"></textarea>
+                                    <div style="text-align:center">
+                                        {!! Form::submit('Continue', ['class' => 'contineue_btn']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
     <header>
         <div class="container">
             <div class="row">

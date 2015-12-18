@@ -152,6 +152,8 @@ return [
         Jenssegers\Agent\AgentServiceProvider::class,
 
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         //  Aimeos\Shop\ShopServiceProvider::class,
 
     ],
@@ -220,6 +222,8 @@ return [
 
         // jenssengers/agent
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
+
+        'Cart'            => Gloudemans\Shoppingcart\Facades\Cart::class,
 
     ],
 

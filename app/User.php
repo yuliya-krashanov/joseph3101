@@ -42,14 +42,14 @@ class User extends Model implements AuthenticatableContract,
     protected $hidden = ['remember_token'];
 
 
-    public static function scopeFindPhone($value)
+    public static function scopeFindPhone($query, $value)
     {
         return $query->where('phone', 'like', "%$value");
     }
 
     public function member()
     {
-        return $this->hasOne('App/Member', 'customer_id');
+        return $this->hasOne('App\Member', 'customer_id');
     }
 
 }

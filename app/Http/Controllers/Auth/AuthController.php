@@ -74,7 +74,8 @@ class AuthController extends Controller
     public function checkPhone(Request $request)
     {
         if ($request->ajax()){
-            $user = User::where('phone', 'like', "%$request->phone%")->first();
+            $phone = preg_replace('~\D~', '', $request->phone);
+            $user = User::FindPhone($phone)->first();
             if ( !$user ) {
                 $member = Member::where('mobile_phone', 'like', "%$request->phone%")->firstOrFail();
                 return Response::json(['first_name' => $member->first_name,

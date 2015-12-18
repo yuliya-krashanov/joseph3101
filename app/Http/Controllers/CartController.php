@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('pages.cart');
+        $cart = Cart::content();
+        return view('pages.cart', compact('cart'));
     }
 
     /**

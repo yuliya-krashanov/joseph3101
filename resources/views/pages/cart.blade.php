@@ -41,25 +41,46 @@
                             <th> Price</th>
                             <th> Product</th>
                         </tr>
-                        <tr>
-                        	<td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>                        
-                      </table>                      
-					        </div>
+                        @forelse($cart as $item)
+                              <tr>
+                                <td>{{ $item->subtotal }}</td>
+                                <td>{{ $item->qty }}</td>
+                                <td>{{ $item->price }}</td>
+                                <td>{{ $item->name }}</td>
+                              </tr>
+                        @empty
+                              <tr>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                              </tr>
+                              <tr>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                              </tr>
+                        @endforelse
+                          <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                          </tr>
+                      </table>
+                  </div>
                   <ul class="list-inline total">
-                      <li>$50</li>
+                      <li>${{ Cart::total() }}</li>
                       <li>Grand Total</li>
                   </ul>
             </div>
             <p>
-              <input type="submit" name="submit" id="submit" value="Pay by Cash to the delivery guy" class="sm_button_menu payment">
+              <button class="sm_button_menu payment">Pay by Cash to the delivery guy</button>
             </p>
             <br>
             <p>
-              <input type="submit" name="submit" id="submit" value="Pay by Credit card" class="sm_button_menu payment">
+               <button class="sm_button_menu payment">Pay by Credit card</button>
             </p>
         </div>
       </div>
