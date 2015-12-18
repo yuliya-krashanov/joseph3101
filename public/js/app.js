@@ -7,60 +7,28 @@ $(document).ready(function(){
     autocompleteCityandStreet();
 
     $('.navbar li.order a').on('click', function(){
-        var orderPopup = '<div class="auth_popup show"><div class="big_popup">' +
-
-            '<div class="row">' +
-            '   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">' +
-            '       <div class="left-image">' +
-            '           <h2>Delivery Details</h2>' +
-            '           <img src="images/pizza-pack.png" class="img-responsive"/>' +
-            '        </div>' +
-            '   </div>  ' +
-    '            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">' +
-    '               <div class="mobile_number_box">' +
-    '                    <input id="author" class="popup_input" name="name" type="text" placeholder="Mobile/Phone Number"/>' +
-    '               </div>' +
-    '               <div class="first_last">' +
-    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
-    '                        <input id="author" class="name_input" name="name" type="text" placeholder="Last Name"/>' +
-    '                    </div> ' +
-    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
-    '                        <input id="author" class="name_input" name="name" type="text" placeholder="First Name"/>' +
-    '                    </div>' +
-    '               </div>' +
-    '               <div class="clearfix"></div>' +
-    '               <div class="contineue">     ' +
-    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
-    '                        <input id="author" class="name_input" name="name" type="text" placeholder="Last Name"/>' +
-    '                    </div>                    ' +
-    '                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
-    '                        <input id="author" class="name_input" name="name" type="text" placeholder="City"/>' +
-    '                    </div>  ' +
-    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
-    '                        <input id="author" class="name_input" name="name" type="text" placeholder="Street Number"/>' +
-    '                    </div>                    ' +
-    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
-    '                        <input id="author" class="name_input" name="name" type="text" placeholder="Street"/>' +
-    '                    </div>                    ' +
-    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
-    '                        <input id="author" class="name_input" name="name" type="text" placeholder="Floor"/>' +
-    '                    </div>' +
-    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
-    '                        <input id="author" class="name_input" name="name" type="text" placeholder="Entrance"/>' +
-    '                    </div>' +
-    '                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
-    '                       <textarea id="comment" rows="8" class="aqua_input_comments" name="message" placeholder="Comments"></textarea>' +
-    '                    <div style="text-align:center">' +
-    '                        <a href="#" class="contineue_btn">Continue</a>' +
-    '                    </div>    ' +
-    '                </div> ' +
-    '          </div>' +
-     '</div>' +
-     '</div>' +
-     '</div>';
-
-     $('body').prepend(orderPopup);
+        putAuthPopup();
     });
+
+    $('.auth_popup form').on('submit'. function(e){
+
+        $.ajax({
+            type: 'POST',
+            url: '/menu',
+            data: $(this).serialize(),
+            success: function(data) {
+                if (data.todo = 'no'){
+                    $('.deal.popup').removeClass('show');
+                }
+            },
+            error: function(data) { // the data parameter here is a jqXHR instance
+                var errors = data.responseJSON;
+                console.log('server errors',errors);
+            }
+        });
+        e.preventDefault();
+
+    })
 
     $('.home-popup-button').on('click', function(){
 
@@ -172,4 +140,61 @@ function autocompleteCityandStreet(){
             source: substringMatcher(states)
         });
 
+}
+
+function putAuthPopup(){
+    var orderPopup = '<div class="auth_popup show"><div class="big_popup">' +
+            '<div class="row">' +
+            '   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">' +
+            '       <div class="left-image">' +
+            '           <h2>Delivery Details</h2>' +
+            '           <img src="images/pizza-pack.png" class="img-responsive"/>' +
+            '        </div>' +
+            '   </div>  ' +
+    '            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">' +
+    '              <form method="POST" action="/menu">' +
+    '               <div class="mobile_number_box">' +
+    '                    <input class="popup_input" name="phone" type="text" placeholder="Mobile/Phone Number" required="required"/>' +
+    '               </div>' +
+    '               <div class="first_last">' +
+    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+    '                        <input class="name_input" name="last_name" type="text" placeholder="Last Name" required="required"/>' +
+    '                    </div> ' +
+    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+    '                        <input class="name_input" name="first_name" type="text" placeholder="First Name" required="required"/>' +
+    '                    </div>' +
+    '               </div>' +
+    '               <div class="clearfix"></div>' +
+    '               <div class="contineue">     ' +
+    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
+    '                        <input class="name_input" name="name" type="text" placeholder="Street" required="required"/>' +
+    '                    </div>                    ' +
+    '                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
+    '                        <input class="name_input" name="name" type="text" placeholder="City" required="required"/>' +
+    '                    </div>  ' +
+    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
+    '                        <input class="name_input" name="home_number" type="text" placeholder="Home Number" required="required"/>' +
+    '                    </div>                    ' +
+    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
+    '                        <input class="name_input" name="street_number" type="text" placeholder="Street Number" required="required"/>' +
+    '                    </div>                    ' +
+    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
+    '                        <input class="name_input" name="floor" type="number" placeholder="Floor" required="required"/>' +
+    '                    </div>' +
+    '                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">' +
+    '                        <input class="name_input" name="entrance" type="text" placeholder="Entrance"/>' +
+    '                    </div>' +
+    '                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
+    '                       <textarea id="comment" rows="8" class="aqua_input_comments" name="message" placeholder="Comments"></textarea>' +
+    '                    <div style="text-align:center">' +
+    '                        <input type="submit" class="contineue_btn" value="Continue">' +
+    '                    </div>    ' +
+    '                   </form>' +
+    '                </div> ' +
+    '          </div>' +
+     '</div>' +
+     '</div>' +
+     '</div>';
+
+    $('body').prepend(orderPopup);
 }

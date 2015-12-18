@@ -41,7 +41,14 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['remember_token'];
 
-    public function member(){
+
+    public static function scopeFindPhone($value)
+    {
+        return $query->where('phone', 'like', "%$value");
+    }
+
+    public function member()
+    {
         return $this->hasOne('App/Member', 'customer_id');
     }
 
