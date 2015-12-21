@@ -8,6 +8,6 @@ class Ingredient extends Model
 {
     protected $table = 'ingredients';
 
-    protected $fillable = ['name','email','phone', 'message'];    
+    protected $fillable = ['title','price'];    
 
 }

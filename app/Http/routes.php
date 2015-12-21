@@ -25,6 +25,7 @@ Route::get('/friends-club/register', ['uses' => 'FriendsController@register', 'a
 Route::post('/friends-club/register', ['uses' => 'FriendsController@create', 'as' => 'member_create']);
 
 Route::get('menu', ['uses' => 'MenuController@index', 'as' => 'menu']);
+Route::post('menu/single', ['uses' => 'MenuController@singleProduct', 'as' => 'singleProduct']);
 
 Route::get('cart', ['uses' => 'CartController@index', 'as' => 'cart', /*'middleware' => 'authEmptyCart'*/]);
 Route::post('cart', ['uses' => 'CartController@comment', 'as' => 'toCartComment', /*'middleware' => 'authEmptyCart'*/]);

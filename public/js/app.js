@@ -1,5 +1,18 @@
 "use strict";
 
+var cartRowTemp = {
+    id: '',
+    title: '',
+    price: '',
+    quantity: 1,
+    options: {
+        size: 's',
+        ingredients: {
+            
+        }
+    }
+};
+
 $(document).ready(function(){
 
     changeActiveItemMenu();
@@ -59,22 +72,30 @@ $(document).ready(function(){
 
         checkAuth(function(data){
             if (data){
-                $('.add_to_cart_popup').addClass('show');
+                 $.ajax({
+                    type: 'POST',
+                    url: '/menu/single',
+                    data: {
+                        'id': $(this).parents('.item').attr('data-id'),
+                        'category': $('.menu-tab.active').attr('id').replace('-tab', ''),
+                        'price': $(this).attr('data-size')
+                    },
+                    success: function(data) {
+                        if (data){
+                            
+                           data.prepend('body');
+                        }
+                    },
+                    error: function(data) { // the data parameter here is a jqXHR instance
+                        var errors = data.responseJSON;
+                        console.log('server errors',errors);
+                    }
+                });
+               
             }
             else  $('.auth_popup').addClass('show');
         });
 
-            //$.ajax({
-        //    type: 'POST',
-        //    url: '/auth/check',
-        //    success: function(data){
-        //
-        //    },
-        //    error: function(data) { // the data parameter here is a jqXHR instance
-        //        var errors = data.responseJSON;
-        //        console.log('server errors',errors);
-        //    }
-        //});
     });
 
     $('.auth_popup form').on('submit', function(e){
@@ -139,6 +160,8 @@ $(document).ready(function(){
     });
 
 });
+
+
 
 // event.type must be keypress
 function getChar(event) {

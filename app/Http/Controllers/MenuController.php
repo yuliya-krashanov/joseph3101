@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Response;
 use App\User;
 use App\Product;
+use App\Category;
+use App\Ingredient;
 use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -38,6 +39,19 @@ class MenuController extends Controller
 
         $cart = Cart::content();
         return view('pages.menu', compact('cart', 'pizzas', 'other_categories', 'lunch_deals', 'add_to_go'));
+    }
+
+    public function singleProduct(Request $request){
+    	if ($request->ajax()){
+    		$product = Product::find($request->id);
+    		$category = $request->category;
+    		$ingredients = '';
+    		if ($category == 'pizzas'){
+    			$ingredients = Ingredient::all();
+    		}
+    		$price = 'price_'.$request->price;
+    		return view('popups.add_to_cart', compact('product', 'price', 'ingredients'))
+    	}
     }
 
     public function addToCart(Request $request){
