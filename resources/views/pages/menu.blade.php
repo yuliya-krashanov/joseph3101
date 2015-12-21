@@ -4,6 +4,113 @@
 
 @section('header')
     <body class="menu_page_color">
+        <div class="add_to_go_popup">
+            <div class="small_popup">
+                <img src="{{ $add_to_go->image }}"/>
+                <h1 class="doller_price">${{ $add_to_go->price_s }}</h1>
+              <span class="deal">Spacial deal</span>
+              <h2 class="greek">{{ $add_to_go->title }}</h2>
+                <small class="pop-small"> {{ $add_to_go->description }}</small>
+                <p class="no-yes-btn">
+                    <input type="submit" class="sm_button yes-add" value="Yes, Add">
+                    <input type="submit" class="sm_button no-thank" value="No, Thanks">                
+                </p>
+            </div>
+        </div>
+        <div class="comments_popup">
+            <div class="small_popup">
+                <form action="{{ route('toCartComment') }}" method="GET">                
+                    <span class="deal">Any comment?</span>
+                    <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                    <p class="no-yes-btn">
+                        <input type="submit" class="sm_button yes-add" value="Continue">                                
+                    </p>
+                </form>
+            </div>
+        </div>
+        <div class="add_to_cart_popup">
+            <div class="menu-order">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+                        <!------------>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                            <div class="order_box">
+                                <div class="price_menu">
+                                    <ul>
+                                        <li class="first_price">$20 <span>MARGHERITA</span><small>Pizza dough with tomato sauce and Gouda cheese </small></li>
+                                        <li class="extra">Extra Ingredients:</li>
+                                        <li class="other_price">$10 <small>Add on Full</small> <span>Bacon</span></li>
+                                        <li class="other_price">$5 <small>&nbsp;&nbsp;&nbsp;Add on Half</small> <span>Pineapple</span></li>
+                                        <li class="other_price">&nbsp;</li>
+                                        <li class="other_price">&nbsp;</li>
+                                    </ul>
+                                </div>
+                                <!-------->
+                                <div class="select_pizza">
+                                    <img src="images/select-pizzas.png" class="img-responsive"/>
+                                </div>
+                                <!-------->
+                                <div class="add_to_cart">
+                                    <ul>
+                                        <li>$35<span>Total</span></li>
+                                        <li class="cart_btn"><a href="#">Add to Cart</a></li>
+                                    </ul>
+                                </div>
+                                <!-------->
+                                
+                            <!------------------>
+                                <div class="ingredient">
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                                    <h4>Ingredients</h4>
+                            <ul class="small_btn half_section">
+                                <li><a href="#">Add on Half $5</a></li>
+                                <li><a href="#">Add on Half $5</a></li>
+                                <li><a href="#">Add on Half $5</a></li>
+                                <li><a href="#">Add on Half $5</a></li>
+                                <li><a href="#">Add on Half $5</a></li>
+                                <li><a href="#">Add on Half $5</a></li>
+                                <li><a href="#">Add on Half $5</a></li>
+                                <li><a href="#">Add on Half $5</a></li>
+                                <li><a href="#">Add on Half $5</a></li>
+                            </ul>
+                            <ul class="small_btn">
+                                <li><a href="#">Add on Full $5</a></li>
+                                <li><a href="#">Add on Full $5</a></li>
+                                <li><a href="#">Add on Full $5</a></li>
+                                <li><a href="#">Add on Full $5</a></li>
+                                <li><a href="#">Add on Full $5</a></li>
+                                <li><a href="#">Add on Full $5</a></li>
+                                <li><a href="#">Add on Full $5</a></li>
+                                <li><a href="#">Add on Full $5</a></li>
+                                <li><a href="#">Add on Full $5</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <ul class="item_list">
+                                <li>Pineapple</li>
+                                <li>Bacon</li>
+                                <li>Bolognese</li>
+                                <li>Egg</li>
+                                <li>Mushrooms</li>
+                                <li>Mozzarella</li>
+                                <li>Peppers</li>
+                                <li>Parmesan flakes</li>
+                                <li>Ham</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+                                </div>
+                            <!------------------>
+                                
+                            </div>
+                        </div>
+                        <!------------>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     @parent
 @endsection
 
@@ -16,6 +123,9 @@
             <div class="col-lg-8 col-sm-8 col-md-8">
                 <ul class="sub_menu">
                     <li class="active"><a href="#" id="pizzas">Pizzas</a></li>
+                    @if (Carbon::now()->between(Carbon::now()->setTime(11, 0, 0), Carbon::now()->setTime(15, 0, 0))
+                        <li><a href="#" id="lunch">Lunch Deals</a></li>
+                    @endif
                     <li><a href="#" id="salads">Salads</a></li>
                     <li><a href="#" id="pastas">Pastas</a></li>
                     <li><a href="#" id="pastries">Pastries</a></li>
@@ -72,98 +182,81 @@
                             <img src="{{ asset('images/red-image.png') }}" class="img-responsive"/> 
                             <h3>Pizzas</h3> 
                         </div>
-                        <!-----1----->
+                        <!-----1---->
                         <div id="pizzas-tab" class="pizza-box menu-tab active" dir="ltr">
                             <!--<img src="img/scroll.png" class="img-responsive" />-->
-                            <div class="col-lg-5 col-sm-5 col-md-5">
-                                <div class="pizza"> <img src="{{ asset('images/pizza-1.png') }}" class="img-responsive"/> </div>
-                            </div>
-                            <!-----2----->
-                            <div class="col-lg-7 col-sm-7 col-md-7 pad-0">
-                                <div class="content" dir="ltr">
-                                    <h4>MARGHERITA</h4>
-                                    <small class="small_title">Pizza dough with tomato sauce and Gouda cheese</small>
-                                    <div style="width:200px; margin:0 auto; margin-top:10px;">
-                                        <!------->
-                                        <div class="small_box orange_box">
-                                            <p>XL<br>
-                                                $20</p>
-                                            <small>Order</small> </div>
-                                        <!------->
-                                        <div class="small_box orange_box">
-                                            <p>L<br>
-                                                $15</p>
-                                            <small>Order</small> </div>
-                                        <!------->
-                                        <div class="small_box orange_box">
-                                            <p>S<br>
-                                                $10</p>
-                                            <small>Order</small> </div>
-                                        <!------->
+                            @for ($i = 0; $i < count($pizzas); $i++)
+                                <div class="item" data-id="{{ $pizzas[$i]->id }}">
+                                @if ($i % 2 !== 0)                                
+                                    <div class="col-lg-5 col-sm-5 col-md-5">
+                                        <div class="pizza"> <img src="{{ $pizzas[$i]->image }}" class="img-responsive"/> </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <!-----3----->
-                            <div class="col-lg-7 col-sm-7 col-md-7">
-                                <div class="content1 right">
-                                    <h4>FOUR SEASONS</h4>
-                                    <small class="small_title">Vegetarian - pizza dough with tomato sauce, fresh red onions, spinach, fresh mushrooms, fresh peppers and gouda cheese</small>
-                                    <div style="width:200px; margin:0 auto; margin-top:10px;">
-                                        <!------->
-                                        <div class="small_box orange_box">
-                                            <p>XL<br>
-                                                $20</p>
-                                            <small>Order</small> </div>
-                                        <!------->
-                                        <div class="small_box orange_box">
-                                            <p>L<br>
-                                                $15</p>
-                                            <small>Order</small> </div>
-                                        <!------->
-                                        <div class="small_box orange_box">
-                                            <p>S<br>
-                                                $10</p>
-                                            <small>Order</small> </div>
-                                        <!------->
+                                    <!-----2---->
+                                    <div class="col-lg-7 col-sm-7 col-md-7 pad-0">
+                                        <div class="content" dir="ltr">
+                                            <h4>{{ $pizzas[$i]->title }}</h4>
+                                            <small class="small_title">{{ $pizzas[$i]->description }}</small>
+                                            <div style="width:200px; margin:0 auto; margin-top:10px;">
+                                                <!------>
+                                                <div class="small_box orange_box">
+                                                    <p>XL<br>
+                                                        ${{ $pizzas[$i]->price_xl }}</p>
+                                                    <small>Order</small> 
+                                                </div>
+                                                <!------>
+                                                <div class="small_box orange_box">
+                                                    <p>L<br>
+                                                        ${{ $pizzas[$i]->price_l }}</p>
+                                                    <small>Order</small> </div>
+                                                <!------>
+                                                <div class="small_box orange_box">
+                                                    <p>S<br>
+                                                        ${{ $pizzas[$i]->price_s }}</p>
+                                                    <small>Order</small>
+                                                </div>
+                                                <!------>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <!-----4----->
-                            <div class="col-lg-5 col-sm-5 col-md-5">
-                                <div class="pizza1"> <img src="{{ asset('images/pizza-2.png') }}" class="img-responsive"/> </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <!-----5----->
-                            <div class="col-lg-5 col-sm-5 col-md-5">
-                                <div class="pizza"> <img src="{{ asset('images/pizza-3.png') }}" class="img-responsive"/> </div>
-                            </div>
-                            <!-----6----->
-                            <div class="col-lg-7 col-sm-7 col-md-7 pad-0">
-                                <div class="content" dir="ltr">
-                                    <h4>ITALIANA</h4>
-                                    <small class="small_title">Vegetarian - pizza dough with tomato sauce, fresh tomatoes, mozzarella, fresh arugula and Gouda cheese </small>
-                                    <div style="width:200px; margin:0 auto; margin-top:10px;">
-                                        <!------->
-                                        <div class="small_box orange_box">
-                                            <p>XL<br>
-                                                $20</p>
-                                            <small>Order</small> </div>
-                                        <!------->
-                                        <div class="small_box orange_box">
-                                            <p>L<br>
-                                                $15</p>
-                                            <small>Order</small> </div>
-                                        <!------->
-                                        <div class="small_box orange_box">
-                                            <p>S<br>
-                                                $10</p>
-                                            <small>Order</small> </div>
-                                        <!------->
+                                @else
+                                       <!-----3---->
+                                    <div class="col-lg-7 col-sm-7 col-md-7">
+                                        <div class="content1 right">
+                                            <h4>{{ $pizzas[$i]->title }}</h4>
+                                            <small class="small_title">{{ $pizzas[$i]->description }}</small>
+                                            <div style="width:200px; margin:0 auto; margin-top:10px;">
+                                                <!------>
+                                                <div class="small_box orange_box">
+                                                    <p>XL<br>
+                                                        ${{ $pizzas[$i]->price_xl }}</p>
+                                                    <small>Order</small> </div>
+                                                <!------>
+                                                <div class="small_box orange_box">
+                                                    <p>L<br>
+                                                        ${{ $pizzas[$i]->price_l }}</p>
+                                                    <small>Order</small> </div>
+                                                <!------>
+                                                <div class="small_box orange_box">
+                                                    <p>S<br>
+                                                        ${{ $pizzas[$i]->price_s }}</p>
+                                                    <small>Order</small> </div>
+                                                <!------>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                    <!-----4---->
+                                    <div class="col-lg-5 col-sm-5 col-md-5">
+                                        <div class="pizza1"> <img src="{{ $pizzas[$i]->image }}" class="img-responsive"/> </div>
+                                    </div>  
+                                @endif
                             </div>
+                            
+                            <div class="clearfix"></div>                           
+                            @endforeach
                         </div>
+                        @if (Carbon::now()->between(Carbon::now()->setTime(11, 0, 0), Carbon::now()->setTime(15, 0, 0))
+                            <div id="lunch-tab" class="lunch-box menu-tab" dir="ltr"></div>
+                        @endif
                         <div id="salads-tab" class="salads-box menu-tab" dir="ltr"></div>
                         <div id="pastas-tab" class="pastas-box menu-tab" dir="ltr"></div>
                         <div id="pastries-tab" class="pastries-box menu-tab" dir="ltr"></div>

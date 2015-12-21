@@ -16,3 +16,12 @@
 .main-menu-page .menu-tab{
   @extend %dynamic-opacity;
 }
+
+.add_to_go_popup{
+  @extend %popup-wrap;
+
+  & .small_popup{
+    width: 400px;
+  }
+
+}

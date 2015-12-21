@@ -6,6 +6,51 @@ $(document).ready(function(){
 
     autocompleteCityandStreet();
 
+    var phoneInput = $('.auth_popup form .mobile_number_box input');
+
+    phoneInput.keypress(function(e) {
+      e = e || event;
+      var chr = getChar(e);
+
+      if (e.ctrlKey || e.altKey || chr == null) return; // специальная клавиша
+      if ( ! ((chr >= '0' && chr <= '9') || chr == '(' || chr == ')' || chr == '.' || chr == ' ') ) return false;
+    });
+
+    // клавиатура, вставить/вырезать клавиатурой
+    phoneInput.keyup(function(e){
+          var phone = $(this).value.replace(/^\d+$/, ''); 
+          if (phone.length > 9){
+            $.ajax({
+                type: 'PUT',
+                url: '/auth',
+                data: { 'phone' : phone },
+                success: function(data) {
+                    if (data.success){
+                        $('.auth_popup form').find('#auth_first_name').value(data.first_name);
+                        $('.auth_popup form').find('#auth_last_name').value(data.last_name);
+                        $('.auth_popup form').find('#auth_city').value(data.city);
+                        $('.auth_popup form').find('#auth_street').value(data.street);
+                        $('.auth_popup form').find('#auth_street_number').value(data.street_number);
+                        $('.auth_popup form').find('#auth_home_number').value(data.home_number);
+                        $('.auth_popup form').find('#auth_floor').value(data.floor);
+                    }
+                },
+                error: function(data) { // the data parameter here is a jqXHR instance
+                    var errors = data.responseJSON;
+                    console.log('server errors',errors);
+                }
+            }
+         
+        });
+    });
+
+    // любые действия, кроме IE. В IE9 также работает, кроме удаления
+    phoneInput.input = calculate;
+
+    phoneInput.onpropertychange = function() { // для IE8- изменение значения, кроме удаления
+      event.propertyName == "value" && calculate();
+    }
+
     $('.navbar li.order a').on('click', function(){
         $('.auth_popup').addClass('show');
     });
@@ -72,6 +117,17 @@ $(document).ready(function(){
     });
 
 });
+
+// event.type must be keypress
+function getChar(event) {
+  if (event.which == null) {
+    return String.fromCharCode(event.keyCode) // IE
+  } else if (event.which!=0 && event.charCode!=0) {
+    return String.fromCharCode(event.which)   // the rest
+  } else {
+    return null // special key
+  }
+}
 
 
 function changeActiveItemMenu(){

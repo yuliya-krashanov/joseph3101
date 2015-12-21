@@ -37,7 +37,7 @@
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                         {!! Form::open(['route' => 'authUser']) !!}
                             <div class="mobile_number_box">
-                                {!! Form::text('phone', null, ['class' => 'popup_input', 'placeholder' => 'Mobile/Phone Number', 'required' => 'required']) !!}
+                                {!! Form::text('phone', null, ['class' => 'popup_input',  'placeholder' => 'Mobile/Phone Number', 'required' => 'required']) !!}
                             </div>
                             <div class="first_last">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
