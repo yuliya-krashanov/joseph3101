@@ -25,8 +25,12 @@ Route::get('/friends-club/register', ['uses' => 'FriendsController@register', 'a
 Route::post('/friends-club/register', ['uses' => 'FriendsController@create', 'as' => 'member_create']);
 
 Route::get('menu', ['uses' => 'MenuController@index', 'as' => 'menu']);
-Route::post('auth', ['uses' => 'AuthController@authUser', 'as' => 'authUser']);
 
 Route::get('cart', ['uses' => 'CartController@index', 'as' => 'cart', /*'middleware' => 'authEmptyCart'*/]);
+Route::post('cart', ['uses' => 'CartController@comment', 'as' => 'toCartComment', /*'middleware' => 'authEmptyCart'*/]);
 
-Route::put('auth', ['uses' => 'AuthController@checkPhone', 'as' => 'checkExistPhone']);
+Route::post('auth', ['uses' => 'Auth\AuthController@authUser', 'as' => 'authUser']);
+Route::put('auth', ['uses' => 'Auth\AuthController@checkPhone', 'as' => 'checkExistPhone']);
+Route::post('/auth/check', function(Request $request){
+    return (Auth::check()) ? 1 : 0;
+});

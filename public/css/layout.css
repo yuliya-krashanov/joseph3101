@@ -788,9 +788,11 @@ body.menu_item
     color: #fff;
     font-size: 15px;
     font-weight: bold;
-    padding: 5px 25px;
+    padding: 5px 20px;
     position: relative;
     top: 204px;
+    width: 200px;
+    margin: 0 auto;
 }
 .pizza-box {
     right: 17px;

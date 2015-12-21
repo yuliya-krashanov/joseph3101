@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Auth;
 use App\Member;
 use Validator;
 use Response;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Http\Requests;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -68,26 +71,27 @@ class AuthController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
-     * @return User
+     *
      */
     public function checkPhone(Request $request)
     {
         if ($request->ajax()){
             $phone = preg_replace('~\D~', '', $request->phone);
-            $user = User::FindPhone($phone)->first();
+            $user = User::findPhone($phone)->first();
             if ( !$user ) {
-                $member = Member::where('mobile_phone', 'like', "%$request->phone%")->firstOrFail();
-                return Response::json(['first_name' => $member->first_name,
+                $member = Member::where('mobile_phone', 'like', "%$request->phone%")->first();
+                return ($member) ? Response::json([ 'success' => true,
+                                        'first_name' => $member->first_name,
                                         'last_name' => $member->last_name,
                                         'address_city' => $member->address_city,
                                         'address_street' => $member->address_street,
                                         'address_street_number' => $member->address_street_number,
                                         'address_home_number' => $member->address_street_number,
-                                        'email' => $member->email ]);
+                                        'email' => $member->email ]) : Response::json([ 'success' => false ]);
             }
             else{
-                return Response::json(['first_name' => $user->first_name,
+                return Response::json([ 'success' => true,
+                                    'first_name' => $user->first_name,
                                     'last_name' => $user->last_name,
                                     'address_city' => $user->address_city,
                                     'address_street' => $user->address_street,
@@ -110,14 +114,14 @@ class AuthController extends Controller
     {
         if ($request->ajax()){
 
-            $phone = preg_replace('~\D~','', $request->phone);
-            $user = User::findPhone($phone)->first();
+            $request->phone = preg_replace('~\D~','', $request->phone);
+            $user = User::where('phone', 'like', "%$request->phone%")->first();
 
             if (!$user){
                 $user = new User();
             }
 
-            $user->phone = $phone;
+            $user->phone = $request->phone;
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
             $user->address_city = $request->city;
@@ -140,6 +144,12 @@ class AuthController extends Controller
             Auth::login($user);
 
             return Response::json(['success' => true]);
+        }
+    }
+
+    public function checkAuth(Request $request){
+        if ($request->ajax()) {
+            return Auth::check();
         }
     }
 }

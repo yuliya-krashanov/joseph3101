@@ -34,8 +34,8 @@ Admin::model(\App\Product::class)
         FormItem::textAddon('price_xl', 'Price XL')->addon('$')->placement('after');
         FormItem::image('image', 'Image');
 
-        FormItem::multiSelect('categories_temp', 'Categories')->list(\App\Category::class)->value('categories.product_id');
-        FormItem::multiSelect('additional_categories_temp', 'Additional Categories')->list(\App\AdditionalCategory::class)->value('additional_categories.product_id');
+        FormItem::multiSelect('categories', 'Categories')->list(\App\Category::class)->value('categories.product_id');
+        FormItem::multiSelect('additional_categories', 'Additional Categories')->list(\App\AdditionalCategory::class)->value('additional_categories.product_id');
 
         FormItem::checkbox('enable', 'Enable');
     });

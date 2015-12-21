@@ -34,6 +34,8 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $table = 'users';
 
+    protected $fillable = ['phone', 'first_name', 'last_name', 'address_city', 'address_street', 'address_street_number', 'address_home_number', 'address_floor'];
+
        /**
      * The attributes excluded from the model's JSON form.
      *

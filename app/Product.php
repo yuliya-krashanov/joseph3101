@@ -22,6 +22,11 @@ class Product extends SleepingOwlModel implements ModelWithImageFieldsInterface
         ];
     }
 
+    public function scopeOrderEnable($query)
+    {
+        return $query->where('enable', 1)->orderBy('price_s');
+    }
+
     /**
      * The categories that belong to the product.
      */
@@ -38,10 +43,22 @@ class Product extends SleepingOwlModel implements ModelWithImageFieldsInterface
         return $this->belongsToMany('App\AdditionalCategory', null, null, 'category_id');
     }
 
+    public function getPriceSAttribute($value)
+    {
+        return round($value);
+    }
+    public function getPriceLAttribute($value)
+    {
+        return round($value);
+    }
+    public function getPriceXlAttribute($value)
+    {
+        return round($value);
+    }
 
     public function setCategoriesAttribute($categories)
     {
-        dd($this->categories());
+        dd($categories);
         $this->categories()->detach();
         if ( ! $categories) return;
         if ( ! $this->exists) $this->save();

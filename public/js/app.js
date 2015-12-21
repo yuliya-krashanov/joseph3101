@@ -13,53 +13,75 @@ $(document).ready(function(){
       var chr = getChar(e);
 
       if (e.ctrlKey || e.altKey || chr == null) return; // специальная клавиша
-      if ( ! ((chr >= '0' && chr <= '9') || chr == '(' || chr == ')' || chr == '.' || chr == ' ') ) return false;
+      if ( ! ((chr >= '0' && chr <= '9') || chr == '(' || chr == ')' || chr == '.' || chr == ' ' || chr == '+') ) return false;
     });
 
     // клавиатура, вставить/вырезать клавиатурой
     phoneInput.keyup(function(e){
-          var phone = $(this).value.replace(/^\d+$/, ''); 
-          if (phone.length > 9){
-            $.ajax({
-                type: 'PUT',
-                url: '/auth',
-                data: { 'phone' : phone },
-                success: function(data) {
-                    if (data.success){
-                        $('.auth_popup form').find('#auth_first_name').value(data.first_name);
-                        $('.auth_popup form').find('#auth_last_name').value(data.last_name);
-                        $('.auth_popup form').find('#auth_city').value(data.city);
-                        $('.auth_popup form').find('#auth_street').value(data.street);
-                        $('.auth_popup form').find('#auth_street_number').value(data.street_number);
-                        $('.auth_popup form').find('#auth_home_number').value(data.home_number);
-                        $('.auth_popup form').find('#auth_floor').value(data.floor);
-                    }
-                },
-                error: function(data) { // the data parameter here is a jqXHR instance
-                    var errors = data.responseJSON;
-                    console.log('server errors',errors);
+      var phoneValue = $(this).val();
+      var phone = phoneValue.replace(/[^0-9]/g, '');
+      if (phone.length > 9){
+        $.ajax({
+            type: 'PUT',
+            url: '/auth',
+            data: { 'phone' : phone },
+            success: function(data) {
+                if (data.success){
+                    $('.auth_popup form').find('#auth_first_name').value(data.first_name);
+                    $('.auth_popup form').find('#auth_last_name').value(data.last_name);
+                    $('.auth_popup form').find('#auth_city').value(data.city);
+                    $('.auth_popup form').find('#auth_street').value(data.street);
+                    $('.auth_popup form').find('#auth_street_number').value(data.street_number);
+                    $('.auth_popup form').find('#auth_home_number').value(data.home_number);
+                    $('.auth_popup form').find('#auth_floor').value(data.floor);
                 }
+            },
+            error: function(data) { // the data parameter here is a jqXHR instance
+                var errors = data.responseJSON;
+                console.log('server errors',errors);
             }
-         
         });
+      }
     });
 
-    // любые действия, кроме IE. В IE9 также работает, кроме удаления
-    phoneInput.input = calculate;
-
-    phoneInput.onpropertychange = function() { // для IE8- изменение значения, кроме удаления
-      event.propertyName == "value" && calculate();
-    }
+    //// любые действия, кроме IE. В IE9 также работает, кроме удаления
+    //phoneInput.input = calculate;
+    //
+    //phoneInput.onpropertychange = function() { // для IE8- изменение значения, кроме удаления
+    //  event.propertyName == "value" && calculate();
+    //}
 
     $('.navbar li.order a').on('click', function(){
-        $('.auth_popup').addClass('show');
+        $('.auth_popup').is('.auth_popup') ? $('.auth_popup').addClass('show') :  window.location.pathname = '/menu';
+    });
+
+    $('.order_button').on('click', function(e){
+
+        checkAuth(function(data){
+            if (data){
+                $('.add_to_cart_popup').addClass('show');
+            }
+            else  $('.auth_popup').addClass('show');
+        });
+
+            //$.ajax({
+        //    type: 'POST',
+        //    url: '/auth/check',
+        //    success: function(data){
+        //
+        //    },
+        //    error: function(data) { // the data parameter here is a jqXHR instance
+        //        var errors = data.responseJSON;
+        //        console.log('server errors',errors);
+        //    }
+        //});
     });
 
     $('.auth_popup form').on('submit', function(e){
 
         $.ajax({
             type: 'POST',
-            url: '/menu',
+            url: '/auth',
             data: $(this).serialize(),
             success: function(data) {
                 if (data.success){
@@ -129,6 +151,19 @@ function getChar(event) {
   }
 }
 
+function checkAuth(handleData){
+    $.ajax({
+        type: 'POST',
+        url: '/auth/check',
+        success: function(data){
+            handleData(data);
+        },
+        error: function(data) { // the data parameter here is a jqXHR instance
+            var errors = data.responseJSON;
+            console.log('server errors',errors);
+        }
+    });
+}
 
 function changeActiveItemMenu(){
 

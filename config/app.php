@@ -205,6 +205,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
+        'Carbon' => Carbon\Carbon::class,
+
         'Admin'                => SleepingOwl\Admin\Admin::class,
         'AdminAuth'            => SleepingOwl\AdminAuth\Facades\AdminAuth::class,
         'AdminRouter'          => SleepingOwl\Admin\Facades\AdminRouter::class,
