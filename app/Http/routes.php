@@ -25,10 +25,12 @@ Route::get('/friends-club/register', ['uses' => 'FriendsController@register', 'a
 Route::post('/friends-club/register', ['uses' => 'FriendsController@create', 'as' => 'member_create']);
 
 Route::get('menu', ['uses' => 'MenuController@index', 'as' => 'menu']);
-Route::post('menu/single', ['uses' => 'MenuController@singleProduct', 'as' => 'singleProduct']);
+Route::post('menu/product', ['uses' => 'MenuController@singleProduct', 'as' => 'singleProduct']);
+Route::post('menu/ingredient', ['uses' => 'MenuController@singleIngredient', 'as' => 'singleIngredient']);
 
 Route::get('cart', ['uses' => 'CartController@index', 'as' => 'cart', /*'middleware' => 'authEmptyCart'*/]);
 Route::post('cart', ['uses' => 'CartController@comment', 'as' => 'toCartComment', /*'middleware' => 'authEmptyCart'*/]);
+Route::post('cart/add', ['uses' => 'CartController@add', 'as' => 'add_to_cart', /*'middleware' => 'authEmptyCart'*/]);
 
 Route::post('auth', ['uses' => 'Auth\AuthController@authUser', 'as' => 'authUser']);
 Route::put('auth', ['uses' => 'Auth\AuthController@checkPhone', 'as' => 'checkExistPhone']);

@@ -73,7 +73,7 @@
                                 <h4 class="left_heading_text">Ordered Items</h4>
                                 <ul class="list">
                                     @foreach($cart as $item)
-                                        <li><span>{{ $cart->product->title }}</span>{{ $cart->price }}$</li>
+                                        {{--<li><span>{{ $cart->product->title }}</span>{{ $cart->price }}$</li>--}}
                                     @endforeach
                                     <li class="last">&nbsp;<span>&nbsp;</span></li>
                                 </ul>
@@ -83,7 +83,7 @@
                                 </ul>
                                 <div style="text-align:center;">
                                     @if ( Cart::total() >= 40 )
-                                        <a class="place_my_order" href="#">Place my Order</a>
+                                        <button class="place_my_order">Place my Order</button>
                                     @else
                                         <p class="place_my_order">Minimum order 40NIS</p>
                                     @endif
@@ -105,7 +105,7 @@
                             <!--<img src="img/scroll.png" class="img-responsive" />-->
                             @for ($i = 0; $i < count($pizzas); $i++)
                                 <div class="item" data-id="{{ $pizzas[$i]->id }}">
-                                @if ($i % 2 !== 0)                                
+                                @if ($i % 2 == 0)
                                     <div class="col-lg-5 col-sm-5 col-md-5">
                                         <div class="pizza"> <img src="{{ asset('images/products/'.$pizzas[$i]->image) }}" class="img-responsive"/> </div>
                                     </div>

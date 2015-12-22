@@ -6,10 +6,7 @@ var cartRowTemp = {
     price: '',
     quantity: 1,
     options: {
-        size: 's',
-        ingredients: {
-            
-        }
+
     }
 };
 
@@ -40,13 +37,13 @@ $(document).ready(function(){
             data: { 'phone' : phone },
             success: function(data) {
                 if (data.success){
-                    $('.auth_popup form').find('#auth_first_name').value(data.first_name);
-                    $('.auth_popup form').find('#auth_last_name').value(data.last_name);
-                    $('.auth_popup form').find('#auth_city').value(data.city);
-                    $('.auth_popup form').find('#auth_street').value(data.street);
-                    $('.auth_popup form').find('#auth_street_number').value(data.street_number);
-                    $('.auth_popup form').find('#auth_home_number').value(data.home_number);
-                    $('.auth_popup form').find('#auth_floor').value(data.floor);
+                    $('.auth_popup form').find('#auth_first_name').val(data.first_name);
+                    $('.auth_popup form').find('#auth_last_name').val(data.last_name);
+                    $('.auth_popup form').find('#auth_city').val(data.city);
+                    $('.auth_popup form').find('#auth_street').val(data.street);
+                    $('.auth_popup form').find('#auth_street_number').val(data.street_number);
+                    $('.auth_popup form').find('#auth_home_number').val(data.home_number);
+                    $('.auth_popup form').find('#auth_floor').val(data.floor);
                 }
             },
             error: function(data) { // the data parameter here is a jqXHR instance
@@ -65,25 +62,50 @@ $(document).ready(function(){
     //}
 
     $('.navbar li.order a').on('click', function(){
-        $('.auth_popup').is('.auth_popup') ? $('.auth_popup').addClass('show') :  window.location.pathname = '/menu';
+        $('body').is('.auth_popup') ? $('.auth_popup').addClass('show') :  window.location.pathname = '/menu';
+    });
+
+    $(document).on('click', '.add_to_cart_popup', function(e){
+        if (e.target.className == 'add_to_cart_popup show'){
+            cartRowTemp = {
+                id: '',
+                title: '',
+                price: '',
+                quantity: 1,
+                options: {
+                }
+            }
+            $('.add_to_cart_popup').removeClass('show').remove();
+        }
     });
 
     $('.order_button').on('click', function(e){
 
-        checkAuth(function(data){
-            if (data){
+        checkAuth($(this), function(el, data){
+
+            console.log(data);
+            if (data == 1){
+
+                 var id = el.parents('.item').attr('data-id'),
+                     category = $('.menu-tab.active').attr('id').replace('-tab', ''),
+                     price = el.attr('data-size');
+
                  $.ajax({
                     type: 'POST',
-                    url: '/menu/single',
+                    url: '/menu/product',
                     data: {
-                        'id': $(this).parents('.item').attr('data-id'),
-                        'category': $('.menu-tab.active').attr('id').replace('-tab', ''),
-                        'price': $(this).attr('data-size')
+                        'id': id,
+                        'category': category,
+                        'price': price
                     },
                     success: function(data) {
-                        if (data){
-                            
-                           data.prepend('body');
+                        if (data.popup){
+                           $('body').prepend(data.popup);
+                           cartRowTemp.id = data.product.id;
+                           cartRowTemp.title = data.product.title;
+                           cartRowTemp.price = data.product['price_' + price];
+
+                           if (category == 'pizzas') cartRowTemp.options.size = price;
                         }
                     },
                     error: function(data) { // the data parameter here is a jqXHR instance
@@ -96,6 +118,54 @@ $(document).ready(function(){
             else  $('.auth_popup').addClass('show');
         });
 
+    });
+
+    $(document).on('click', '.ingredient .item_list li button', function(e){
+        var side = $(this).attr('data-side'),
+            id = $(this).parent().attr('data-id');
+
+        $.ajax({
+            type: 'POST',
+            url: '/menu/ingredient',
+            data: {
+                'id': id
+            },
+            success: function(data) {
+                if (data.ingredient){
+                    var price = (side == 'full') ?   data.ingredient.price : data.ingredient.price / 2;
+                    (cartRowTemp.options.ingredients) ? cartRowTemp.options.ingredients.push( { "id": id, "price": price, "side": side } ) : cartRowTemp.options.ingredients = [ { "id": id, "price": price, "side": side } ];
+                    $('.price_menu ul').append('<li class="other_price">$' + price +'<small>Add on '+ side +'</small><span>' + data.ingredient.title + '</span></li>');
+                    $('.add_to_cart_popup .add_to_cart .total .number').text(totalItemPrice());
+                }
+            },
+            error: function(data) { // the data parameter here is a jqXHR instance
+                var errors = data.responseJSON;
+                console.log('server errors',errors);
+            }
+        });
+    });
+
+    $(document).on('click', '.add_to_cart_popup .cart_btn', function(e){
+        $.ajax({
+            type: 'POST',
+            url: '/cart/add',
+            data: {
+                'row': cartRowTemp,
+                'total': totalItemPrice()
+            },
+            success: function(data) {
+                //if (data.ingredient){
+                //    var price = (side == 'full') ?   data.ingredient.price : data.ingredient.price / 2;
+                //    (cartRowTemp.options.ingredients) ? cartRowTemp.options.ingredients.push( { "id": id, "price": price, "side": side } ) : cartRowTemp.options.ingredients = [ { "id": id, "price": price, "side": side } ];
+                //    $('.price_menu ul').append('<li class="other_price">$' + price +'<small>Add on '+ side +'</small><span>' + data.ingredient.title + '</span></li>');
+                //    $('.add_to_cart_popup .add_to_cart .total .number').text(totalItemPrice());
+                //}
+            },
+            error: function(data) { // the data parameter here is a jqXHR instance
+                var errors = data.responseJSON;
+                console.log('server errors',errors);
+            }
+        });
     });
 
     $('.auth_popup form').on('submit', function(e){
@@ -174,12 +244,12 @@ function getChar(event) {
   }
 }
 
-function checkAuth(handleData){
+function checkAuth(el, handleData){
     $.ajax({
         type: 'POST',
         url: '/auth/check',
         success: function(data){
-            handleData(data);
+            handleData(el, data);
         },
         error: function(data) { // the data parameter here is a jqXHR instance
             var errors = data.responseJSON;
@@ -197,6 +267,16 @@ function changeActiveItemMenu(){
             $(this).parent().addClass('act');
         }
     });
+}
+
+function totalItemPrice(){
+    var total = cartRowTemp.price;
+    if (cartRowTemp.options.ingredients){
+        cartRowTemp.options.ingredients.forEach(function(ingredient, i, arr) {
+            total += ingredient.price;
+        });
+    }
+    return total;
 }
 
 function autocompleteCityandStreet(){

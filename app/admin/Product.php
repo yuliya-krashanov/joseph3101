@@ -4,6 +4,7 @@
 Admin::model(\App\Product::class)
     ->title('Products')
     ->as('products')
+    ->with('categories')
     ->denyCreating(function ()
     {
 

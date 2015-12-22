@@ -93,12 +93,11 @@ class AuthController extends Controller
                 return Response::json([ 'success' => true,
                                     'first_name' => $user->first_name,
                                     'last_name' => $user->last_name,
-                                    'address_city' => $user->address_city,
-                                    'address_street' => $user->address_street,
-                                    'address_street_number' => $user->address_street_number,
-                                    'address_home_number' => $user->address_street_number,
-                                    'address_floor' => $user->address_floor,
-                                    'email' => $user->email ]);
+                                    'city' => $user->address_city,
+                                    'street' => $user->address_street,
+                                    'street_number' => $user->address_street_number,
+                                    'home_number' => $user->address_street_number,
+                                    'floor' => $user->address_floor ]);
             }            
         }
         
@@ -131,14 +130,15 @@ class AuthController extends Controller
             $user->address_floor = $request->floor;
             $user->save();
 
-            if( $user->member ){
-                $user->member->first_name = $user->first_name;
-                $user->member->last_name = $user->last_name;
-                $user->member->address_city = $user->address_city;
-                $user->member->address_street = $user->address_street;
-                $user->memberr->address_street_number = $user->address_street_number;
-                $user->member->address_home_number = $user->address_home_number;
-                $user->member->save();
+            $member = $user->member;
+            if( $member ){
+                $member->first_name = $user->first_name;
+                $member->last_name = $user->last_name;
+                $member->address_city = $user->address_city;
+                $member->address_street = $user->address_street;
+                $member->address_street_number = $user->address_street_number;
+                $member->address_home_number = $user->address_home_number;
+                $user->member->save($member);
             }
 
             Auth::login($user);

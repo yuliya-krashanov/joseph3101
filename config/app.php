@@ -225,7 +225,7 @@ return [
         // jenssengers/agent
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
 
-        'Cart'            => Gloudemans\Shoppingcart\Facades\Cart::class,
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
 
     ],
 

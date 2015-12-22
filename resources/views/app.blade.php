@@ -41,28 +41,28 @@
                             </div>
                             <div class="first_last">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {!! Form::text('last_name', null, ['class' => 'name_input', 'placeholder' => 'Last Name', 'required' => 'required']) !!}
+                                    {!! Form::text('last_name', null, ['class' => 'name_input', 'placeholder' => 'Last Name', 'id' => 'auth_first_name', 'required' => 'required']) !!}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {!! Form::text('first_name', null, ['class' => 'name_input', 'placeholder' => 'First Name', 'required' => 'required']) !!}
+                                    {!! Form::text('first_name', null, ['class' => 'name_input', 'placeholder' => 'First Name', 'id' => 'auth_last_name', 'required' => 'required']) !!}
                                 </div>
                             </div>
                             <div class="clearfix"></div>
                             <div class="contineue">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">
-                                    {!! Form::text('street', null, ['class' => 'name_input', 'placeholder' => 'Street', 'required' => 'required']) !!}
+                                    {!! Form::text('street', null, ['class' => 'name_input', 'placeholder' => 'Street', 'id' => 'auth_street', 'required' => 'required']) !!}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">
-                                    {!! Form::text('city', null, ['class' => 'name_input', 'placeholder' => 'City', 'required' => 'required']) !!}
+                                    {!! Form::text('city', null, ['class' => 'name_input', 'placeholder' => 'City', 'id' => 'auth_city', 'required' => 'required']) !!}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">
-                                    {!! Form::text('home_number', null, ['class' => 'name_input', 'placeholder' => 'Home Number', 'required' => 'required']) !!}
+                                    {!! Form::text('home_number', null, ['class' => 'name_input', 'placeholder' => 'Home Number', 'id' => 'auth_home_number', 'required' => 'required']) !!}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">
-                                    {!! Form::text('street_number', null, ['class' => 'name_input', 'placeholder' => 'Street Number', 'required' => 'required']) !!}
+                                    {!! Form::text('street_number', null, ['class' => 'name_input', 'placeholder' => 'Street Number', 'id' => 'auth_street_number', 'required' => 'required']) !!}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">
-                                    {!! Form::text('floor', null, ['class' => 'name_input', 'placeholder' => 'Floor', 'required' => 'required']) !!}
+                                    {!! Form::text('floor', null, ['class' => 'name_input', 'placeholder' => 'Floor', 'id' => 'auth_floor', 'required' => 'required']) !!}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad-10">
                                     <input class="name_input" name="entrance" type="text" placeholder="Entrance"/>

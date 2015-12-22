@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Product;
+use Cart;
+//use Gloudemans\Shoppingcart\CartRowCollection;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -24,11 +26,22 @@ class CartController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function add(Request $request)
     {
-        //
+        if ($request->ajax()){
+
+            $product = Product::find($request->row['id']);
+            $options = $request->row['options'];
+            $size = ($request->row['options']['size']) ? $request->row['options']['size'] : 's';
+            Cart::associate(Product::class)->add($product->id, $product->title, $request->row['quantity'], $product->{'price_'.$size}, $options);
+            $cart = Cart::content();
+            dd($cart);
+            return redirect('menu/');
+
+        }
     }
 
     /**

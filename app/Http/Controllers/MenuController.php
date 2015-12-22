@@ -27,12 +27,6 @@ class MenuController extends Controller
         $other_categories['pastries'] = Category::where('slug','pastries')->first()->products()->orderEnable()->get();
         $other_categories['drinks'] = Category::where('slug','drinks')->first()->products()->orderEnable()->get();
 
-
-        //Product::with('categories')->join('categories','categories.id', '=', 'products.id')->enable()->where('categories.slug', 'pizzas')->orderBy('price_s')->get();
-//    	$salads = Product::with('categories')->where('categories.slug', 'salads');
-//    	$pastas = Product::with('categories')->where('categories.slug', 'pastas');
-//    	$pastries = Product::with('categories')->where('categories.slug', 'pastries');
-//    	$drinks = Product::with('categories')->where('categories.slug', 'drinks');
 //    	$lunch_deals = Product::with('additional_categories')->where('additional_categories.slug', 'lunch_deals');
 
     	$add_to_go = Product::find(1);/*Product::with('additional_categories')->where('additional_categories.slug', 'add-to-go')->first()*/;
@@ -47,20 +41,20 @@ class MenuController extends Controller
     		$category = $request->category;
     		$ingredients = '';
     		if ($category == 'pizzas'){
-    			$ingredients = Ingredient::all();
+    			$ingredients = Ingredient::all()->sortBy('price');
     		}
     		$price = 'price_'.$request->price;
-    		return view('popups.add_to_cart', compact('product', 'price', 'ingredients'))
+            $popup = view('popups.add_to_cart', compact('product', 'price', 'ingredients'))->render();
+    		return Response::json(['popup' => $popup, 'product' => $product]);
     	}
     }
 
-    public function addToCart(Request $request){
-    	if ($request->ajax()){
-
-    		Cart::add();
-    		Cart::content();
-    		return view('menu.cart', compact('cart'));
-    	}
-    	
+    public function singleIngredient(Request $request){
+        if ($request->ajax()){
+            $ingredient = Ingredient::find($request->id);
+            return Response::json(compact('ingredient'));
+        }
     }
+
+
 }
