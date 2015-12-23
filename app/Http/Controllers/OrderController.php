@@ -12,8 +12,13 @@ class OrderController extends Controller
     /**
      * @param Request $request
      */
-    public function add(Request $request)
+    public function create(Request $request)
     {
+    	$order = new Order(Auth::user()->id, $request->);
+    }
 
+    protected function findLastId($from)
+    {
+    	Order::where('id', 'like', "$from%");
     }
 }
