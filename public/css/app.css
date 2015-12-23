@@ -126,7 +126,6 @@
   opacity: 0;
   visibility: hidden;
   transition: all ease 0.5ms;
-  position: absolute;
 }
 
 .main-menu-page .active.menu-tab {
@@ -134,9 +133,39 @@
   visibility: visible;
 }
 
+.main-menu-page .menu-tab {
+  position: absolute;
+}
+
 .add_to_go_popup .small_popup,
 .comments_popup .small_popup {
-  width: 400px;
+  width: 750px;
+}
+
+.add_to_go_popup .small_popup small,
+.comments_popup .small_popup small {
+  left: -6%;
+}
+
+.add_to_go_popup .small_popup > img,
+.comments_popup .small_popup > img {
+  max-width: 240px;
+}
+
+.comments_popup span.deal {
+  font-size: 45px;
+  bottom: -50px;
+}
+
+.comments_popup p.no-yes-btn {
+  bottom: -70px;
+  width: 23%;
+}
+
+.comments_popup textarea {
+  float: left;
+  margin-top: 50px;
+  margin-left: 55px;
 }
 
 .add_to_cart_popup .menu-order {

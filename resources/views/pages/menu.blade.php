@@ -4,30 +4,6 @@
 
 @section('header')
     <body class="menu_page_color">
-        {{--<div class="add_to_go_popup">--}}
-            {{--<div class="small_popup">--}}
-                {{--<img src="{{ $add_to_go->image }}"/>--}}
-                {{--<h1 class="doller_price">${{ $add_to_go->price_s }}</h1>--}}
-              {{--<span class="deal">Spacial deal</span>--}}
-              {{--<h2 class="greek">{{ $add_to_go->title }}</h2>--}}
-                {{--<small class="pop-small"> {{ $add_to_go->description }}</small>--}}
-                {{--<p class="no-yes-btn">--}}
-                    {{--<input type="submit" class="sm_button yes-add" value="Yes, Add">--}}
-                    {{--<input type="submit" class="sm_button no-thank" value="No, Thanks">                --}}
-                {{--</p>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        <div class="comments_popup">
-            <div class="small_popup">
-                <form action="{{ route('toCartComment') }}" method="POST">
-                    <span class="deal">Any comment?</span>
-                    <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
-                    <p class="no-yes-btn">
-                        <input type="submit" class="sm_button yes-add" value="Continue">                                
-                    </p>
-                </form>
-            </div>
-        </div>
         
     @parent
 @endsection
@@ -72,8 +48,8 @@
                             <div class="ordered_item" dir="ltr">
                                 <h4 class="left_heading_text">Ordered Items</h4>
                                 <ul class="list">
-                                    @foreach($cart as $item)
-                                        {{--<li><span>{{ $cart->product->title }}</span>{{ $cart->price }}$</li>--}}
+                                    @foreach($cart as $row)
+                                        <li><span>{{ $row->name }}</span>{{ $row->subtotal }}$</li>
                                     @endforeach
                                     <li class="last">&nbsp;<span>&nbsp;</span></li>
                                 </ul>

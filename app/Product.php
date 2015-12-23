@@ -40,7 +40,7 @@ class Product extends SleepingOwlModel implements ModelWithImageFieldsInterface
      */
     public function additional_categories()
     {
-        return $this->belongsToMany('App\AdditionalCategory', null, null, 'category_id');
+        return $this->belongsToMany('App\AdditionalCategory', 'additional_category_product', 'product_id', 'category_id');
     }
 
     public function getPriceSAttribute($value)

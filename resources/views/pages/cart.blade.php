@@ -80,7 +80,7 @@
             </p>
             <br>
             <p>
-               <button class="sm_button_menu payment">Pay by Credit card</button>
+               <a href="{{ route('checkout_card') }}" class="sm_button_menu payment">Pay by Credit card</a>
             </p>
         </div>
       </div>

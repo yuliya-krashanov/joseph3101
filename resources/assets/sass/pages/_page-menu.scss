@@ -14,15 +14,39 @@
 
 
 .main-menu-page .menu-tab{
+  position: absolute;
   @extend %dynamic-opacity;
 }
 
-.add_to_go_popup, .comments_popup, {
+.add_to_go_popup, .comments_popup {
   @extend %popup-wrap;
 
   & .small_popup{
-    width: 400px;
+    width: 750px;
+    small{
+      left: -6%;
+    }
+    & > img{
+      max-width: 240px;
+    }
   }
+}
+.comments_popup{
+
+  span.deal{
+    font-size: 45px;
+    bottom: -50px;
+  }
+  p.no-yes-btn{
+    bottom: -70px;
+    width: 23%
+  }
+  textarea{
+    float:left;
+    margin-top: 50px;
+    margin-left: 55px;
+  }
+
 }
 .add_to_cart_popup {
   @extend %popup-wrap;

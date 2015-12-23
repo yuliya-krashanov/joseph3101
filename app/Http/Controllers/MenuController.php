@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AdditionalCategory;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -30,8 +31,9 @@ class MenuController extends Controller
 //    	$lunch_deals = Product::with('additional_categories')->where('additional_categories.slug', 'lunch_deals');
 
     	$add_to_go = Product::find(1);/*Product::with('additional_categories')->where('additional_categories.slug', 'add-to-go')->first()*/;
-
         $cart = Cart::content();
+       // Cart::remove('bd2f7a70385762cc1403be34dd6491b0');
+
         return view('pages.menu', compact('cart', 'pizzas', 'other_categories', 'lunch_deals', 'add_to_go'));
     }
 
@@ -56,5 +58,30 @@ class MenuController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function addToGoPopup(Request $request){
+        if ($request->ajax()){
+            $product = AdditionalCategory::where('slug', 'add-to-go')->first()->products()->first();
+            $popup = view('popups.add_to_go', compact('product'))->render();
+            return Response::json(['popup' => $popup, 'product' => $product]);
+        }
+    }
+
+    public function commentPopup(Request $request){
+        if ($request->ajax()){
+            $popup = view('popups.comment')->render();
+            return Response::json(['popup' => $popup]);
+        }
+    }
+
+    public function saveComment(Request $request){
+        if ($request->ajax()){
+            $request->session()->put('order_comment', $request->comment);
+            return Response::json(['success' => true]);
+        }
+    }
 
 }

@@ -74,8 +74,14 @@ $(document).ready(function(){
                 quantity: 1,
                 options: {
                 }
-            }
+            };
             $('.add_to_cart_popup').removeClass('show').remove();
+        }
+    });
+
+    $(document).on('click', '.comments_popup', function(e){
+        if (e.target.className == 'comments_popup show'){
+            $('.comments_popup').removeClass('show').remove();
         }
     });
 
@@ -146,26 +152,106 @@ $(document).ready(function(){
     });
 
     $(document).on('click', '.add_to_cart_popup .cart_btn', function(e){
+
+        addToCart(cartRowTemp, function(data){
+            if (data)
+               window.location.pathname = '/menu';
+        });
+
+    });
+
+    $('.place_my_order').on('click', function(e){
         $.ajax({
             type: 'POST',
-            url: '/cart/add',
-            data: {
-                'row': cartRowTemp,
-                'total': totalItemPrice()
-            },
+            url: '/menu/add-to-go',
             success: function(data) {
-                //if (data.ingredient){
-                //    var price = (side == 'full') ?   data.ingredient.price : data.ingredient.price / 2;
-                //    (cartRowTemp.options.ingredients) ? cartRowTemp.options.ingredients.push( { "id": id, "price": price, "side": side } ) : cartRowTemp.options.ingredients = [ { "id": id, "price": price, "side": side } ];
-                //    $('.price_menu ul').append('<li class="other_price">$' + price +'<small>Add on '+ side +'</small><span>' + data.ingredient.title + '</span></li>');
-                //    $('.add_to_cart_popup .add_to_cart .total .number').text(totalItemPrice());
-                //}
+                if (data.popup){
+                    $('body').prepend(data.popup);
+                    cartRowTemp.id = data.product.id;
+                    cartRowTemp.title = data.product.title;
+                    cartRowTemp.price = data.product['price_s'];
+                    cartRowTemp.options.size = 's';
+                }
             },
             error: function(data) { // the data parameter here is a jqXHR instance
                 var errors = data.responseJSON;
                 console.log('server errors',errors);
             }
         });
+    });
+
+
+    $(document).on('click', '.add_to_go_popup button.no-thank', function(e){
+
+        $('.add_to_go_popup').remove();
+        cartRowTemp = {
+            id: '',
+            title: '',
+            price: '',
+            quantity: 1,
+            options: {
+            }
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/menu/comment',
+            success: function(data) {
+                if (data.popup){
+                    $('body').prepend(data.popup);
+                }
+            },
+            error: function(data) { // the data parameter here is a jqXHR instance
+                var errors = data.responseJSON;
+                console.log('server errors',errors);
+            }
+        });
+
+
+    });
+    $(document).on('click', '.add_to_go_popup button.yes-add', function(e){
+        $('.add_to_go_popup').remove();
+
+        addToCart(cartRowTemp, function(data){
+            $.ajax({
+                type: 'POST',
+                url: '/menu/comment',
+                success: function(data) {
+                    if (data){
+                        $('body').prepend(data.popup);
+                    }
+                },
+                error: function(data) { // the data parameter here is a jqXHR instance
+                    var errors = data.responseJSON;
+                    console.log('server errors',errors);
+                }
+            });
+        });
+
+    });
+
+    $(document).on('click', '.comments_popup button', function(e){
+        var comment = $('.comments_popup textarea').val();
+
+        if (comment !== ''){
+
+            $.ajax({
+                type: 'PUT',
+                url: '/menu/comment',
+                data: {'comment': comment},
+                success: function(data) {
+                    if (data.success){
+                        window.location.pathname = '/cart';
+                    }
+                },
+                error: function(data) { // the data parameter here is a jqXHR instance
+                    var errors = data.responseJSON;
+                    console.log('server errors',errors);
+                }
+            });
+        }else{
+            window.location.pathname = '/cart';
+        }
     });
 
     $('.auth_popup form').on('submit', function(e){
@@ -231,7 +317,23 @@ $(document).ready(function(){
 
 });
 
-
+function addToCart(cartRow, handleData){
+    $.ajax({
+        type: 'POST',
+        url: '/cart/add',
+        data: {
+            'row': cartRow,
+            'total': totalItemPrice()
+        },
+        success: function(data) {
+            handleData(data);
+        },
+        error: function(data) { // the data parameter here is a jqXHR instance
+            var errors = data.responseJSON;
+            console.log('server errors',errors);
+        }
+    });
+}
 
 // event.type must be keypress
 function getChar(event) {

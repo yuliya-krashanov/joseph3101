@@ -13,7 +13,7 @@ class AdditionalCategory extends SleepingOwlModel
 
     public function products()
     {
-        return $this->belongsToMany('App\Product');
+        return $this->belongsToMany('App\Product', 'additional_category_product', 'category_id');
     }
 
     public static function getList()

@@ -25,12 +25,16 @@ Route::get('/friends-club/register', ['uses' => 'FriendsController@register', 'a
 Route::post('/friends-club/register', ['uses' => 'FriendsController@create', 'as' => 'member_create']);
 
 Route::get('menu', ['uses' => 'MenuController@index', 'as' => 'menu']);
-Route::post('menu/product', ['uses' => 'MenuController@singleProduct', 'as' => 'singleProduct']);
-Route::post('menu/ingredient', ['uses' => 'MenuController@singleIngredient', 'as' => 'singleIngredient']);
+Route::post('menu/product', ['uses' => 'MenuController@singleProduct', 'as' => 'single_product']);
+Route::post('menu/ingredient', ['uses' => 'MenuController@singleIngredient', 'as' => 'single_ingredient']);
+Route::post('menu/add-to-go', ['uses' => 'MenuController@addToGoPopup', 'as' => 'add_to_go_popup']);
+Route::post('menu/comment', ['uses' => 'MenuController@commentPopup', 'as' => 'comment_popup']);
+Route::put('menu/comment', ['uses' => 'MenuController@saveComment', 'as' => 'comment_save']);
 
 Route::get('cart', ['uses' => 'CartController@index', 'as' => 'cart', /*'middleware' => 'authEmptyCart'*/]);
-Route::post('cart', ['uses' => 'CartController@comment', 'as' => 'toCartComment', /*'middleware' => 'authEmptyCart'*/]);
 Route::post('cart/add', ['uses' => 'CartController@add', 'as' => 'add_to_cart', /*'middleware' => 'authEmptyCart'*/]);
+
+Route::get('order/card', ['uses' => 'OrderController@index', 'as' => 'checkout_card', /*'middleware' => 'authEmptyCart'*/]);
 
 Route::post('auth', ['uses' => 'Auth\AuthController@authUser', 'as' => 'authUser']);
 Route::put('auth', ['uses' => 'Auth\AuthController@checkPhone', 'as' => 'checkExistPhone']);
