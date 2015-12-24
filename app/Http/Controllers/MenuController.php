@@ -20,8 +20,8 @@ class MenuController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(){
-
+    public function index()
+    {
     	$pizzas = Category::where('slug','pizzas')->first()->products()->orderEnable()->get();
         $other_categories['salads'] = Category::where('slug','salads')->first()->products()->orderEnable()->get();
         $other_categories['pastas'] = Category::where('slug','pastas')->first()->products()->orderEnable()->get();

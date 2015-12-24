@@ -29,6 +29,28 @@ class OrderController extends Controller
         return view('pages.checkout');
     }
 
+    public function sendMessage(Request $request)
+    {
+    	$user = Auth::user();
+    	 // Create an authenticated client for the Twilio API
+		$client = new Services_Twilio($_ENV['TWILIO_ACCOUNT_SID'], $_ENV['TWILIO_AUTH_TOKEN']);
+		 
+		try {
+		    // Use the Twilio REST API client to send a text message
+		    $m = $client->account->messages->sendMessage(
+		      $_ENV['TWILIO_NUMBER'], // the text will be sent from your Twilio number
+		      $user->phone, // the phone number the text will be sent to
+		      rand(10000, 99999) // the body of the text message
+		    );
+		} catch(Services_Twilio_RestException $e) {
+		    // Return and render the exception object, or handle the error as needed
+		    return $e;
+		};
+		 
+		// Return the message object to the browser as JSON
+		return $m;
+    }
+
     /**
      * @param Request $request
      * @return $this
@@ -68,17 +90,16 @@ class OrderController extends Controller
             $user->email = $email;
             $user->stripe_customer_id = $customerID;
             $user->save();
-
         }
 
         // Charging the Customer with the selected amount
         try {
             $charge = Charge::create([
-                'amount' => $total_amount,
+                'amount' => $total_amount * 100,
                 'currency' => 'usd',
                 'customer' => $customerID,
                 'metadata' => [
-                    //'product_name' => $product
+                    // что то нужно сохранять
                 ]
             ]);
         } catch (Card $e) {
@@ -89,18 +110,33 @@ class OrderController extends Controller
 
         $id = $this->findLastId('IO');
         // Create purchase record in the database
-        Order::create([
+        $order = Order::create([
             'id' => $id,
             'user_id' => $user->id,
             'amount' => $total_amount,
+            'delivery_method' => //2,
+            'payment_method' => //2,
+            'print' => 0,
+            'status' => 1,
             'stripe_transaction_id' => $charge->id,
         ]);
+
+        $cart = Cart::content();
+        foreach ($cart as $row){
+        	$order->products()->attach($row->product->id, 
+        								['subtotal' => $row->subtotal,
+        								 'quantity' => $row->qty,
+        								 'size' => ($row->options->has('size')) ? $row->options->size : '',
+        								 'ingredients' => ($row->options->has('ingredients')) ? serialize($row->options->ingredients) : '']);
+        }
+
+        return redirect()->route('checkout_card')->with('id', $order->id);
     }
 
     protected function findLastId($from)
     {
         $lastOrder = Order::where('id', 'like', "$from%")->sortByDesc('id')->first();
-        $new_id = str_ireplace($from, '', $lastOrder->id) + 1;
+        $new_id = ($lastOrder) ? str_ireplace($from, '', $lastOrder->id) + 1 : 1000;
     	return $from . $new_id;
     }
 }
