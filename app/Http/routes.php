@@ -34,7 +34,8 @@ Route::put('menu/comment', ['uses' => 'MenuController@saveComment', 'as' => 'com
 Route::get('cart', ['uses' => 'CartController@index', 'as' => 'cart', /*'middleware' => 'authEmptyCart'*/]);
 Route::post('cart/add', ['uses' => 'CartController@add', 'as' => 'add_to_cart', /*'middleware' => 'authEmptyCart'*/]);
 
-Route::get('order/card', ['uses' => 'OrderController@index', 'as' => 'checkout_card', /*'middleware' => 'authEmptyCart'*/]);
+Route::get('order/card', ['uses' => 'OrderController@card',  /*'middleware' => 'authEmptyCart'*/]);
+Route::post('order/card', ['uses' => 'OrderController@cardCheckout', 'as' => 'checkout_card', /*'middleware' => 'authEmptyCart'*/]);
 
 Route::post('auth', ['uses' => 'Auth\AuthController@authUser', 'as' => 'authUser']);
 Route::put('auth', ['uses' => 'Auth\AuthController@checkPhone', 'as' => 'checkExistPhone']);

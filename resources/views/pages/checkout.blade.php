@@ -27,34 +27,51 @@
                     <div class="menu_from">
                         <h3 class="menu-title">Credit Card</h3>
                         <div class="card-from">
-                            {!! Form::open(['route' => 'checkoutCard']) !!}
-                                <p>
-                                    {!! Form::text('first_name', null, ['class' => 'aqua_input_menu', 'id' => 'first_name', 'required' => 'required']) !!}
-                                    {!! Form::label('first_name', 'First Name', ['class' => 'input_name required_label']) !!}
+                            {!! Form::open(['route' => 'checkout_card']) !!}
+
+                                {{--<p>--}}
+                                    {{--{!! Form::text('identity_id', null, ['class' => 'aqua_input_menu', 'id' => 'identity_id', 'required' => 'required']) !!}--}}
+                                    {{--{!! Form::label('identity_id', 'Identity ID', ['class' => 'input_name required_label']) !!}--}}
+                                {{--</p>--}}
+                                <p id="email-group">
+                                    {!! Form::label('email', 'Email address:') !!}
+                                    {!! Form::email('email', null, [
+                                    'class' => 'aqua_input_menu',
+                                    'placeholder'                   => 'email@example.com',
+                                    'required'                      => 'required',
+                                    'data-parsley-required-message' => 'Email name is required',
+                                    'data-parsley-trigger'          => 'change focusout',
+                                    'data-parsley-class-handler'    => '#email-group'
+                                    ]) !!}
                                 </p>
-                                <p>
-                                    {!! Form::text('last_name', null, ['class' => 'aqua_input_menu', 'id' => 'last_name', 'required' => 'required']) !!}
-                                    {!! Form::label('last_name', 'Last Name', ['class' => 'input_name required_label']) !!}
-                                </p>
-                                <p>
-                                    {!! Form::text('identity_id', null, ['class' => 'aqua_input_menu', 'id' => 'identity_id', 'required' => 'required']) !!}
-                                    {!! Form::label('identity_id', 'Identity ID', ['class' => 'input_name required_label']) !!}
-                                </p>
-                                <p>
-                                    {!! Form::text('credit_card', null, ['class' => 'aqua_input_menu', 'id' => 'credit_card', 'required' => 'required']) !!}
+                                <p id="cc-group">
+                                    {!! Form::text('credit_card', null, ['class' => 'aqua_input_menu', 'id' => 'credit_card', 'required' => 'required',
+                                    'data-parsley-type'             => 'number',
+                                    'maxlength'                     => '16',
+                                    'data-stripe'                   => 'number',
+                                    'data-parsley-trigger'          => 'change focusout',
+                                    'data-parsley-class-handler'    => '#cc-group']) !!}
                                     {!! Form::label('credit_card', 'Credit Card Number', ['class' => 'input_name required_label']) !!}
                                 </p>
                                 <p>
-                                    {!! Form::selectRange('exp_month', 01, 12, null, ['class' => 'selectbox', 'id' => 'exp_month'] ) !!}
-                                    {!! Form::selectRange('exp_year', 2015, 2060, null, ['class' => 'selectbox', 'id' => 'exp_year'] ) !!}
+                                    {!! Form::selectMonth('exp_month',  null, ['class' => 'selectbox', 'id' => 'exp_month', 'required' => 'required', 'data-stripe'  => 'exp-month' ], '%m' ) !!}
+                                    {!! Form::selectYear('exp_year', date('Y'), date('Y') + 25, null,  ['class' => 'selectbox', 'id' => 'exp_year', 'required' => 'required', 'data-stripe' => 'exp-year'] ) !!}
                                     {!! Form::label('exp_year', 'Valid until', ['class' => 'input_name required_label']) !!}
                                 </p>
-                                <p>
-                                    {!! Form::text('ccv', null, ['class' => 'aqua_input_menu_ccv', 'id' => 'ccv', 'required' => 'required']) !!}
+                                <p id="ccv-group">
+                                    {!! Form::text('ccv', null, ['class' => 'aqua_input_menu_ccv', 'id' => 'ccv', 'required' => 'required',
+                                    'data-parsley-type'             => 'number',
+                                    'data-parsley-trigger'          => 'change focusout',
+                                    'data-stripe'                   => 'cvc',
+                                    'maxlength'                     => '4',
+                                    'data-parsley-class-handler'    => '#ccv-group']) !!}
                                     {!! Form::label('ccv', 'CCV', ['class' => 'input_name required_label']) !!}
                                 </p>
                                 <p>
-                                    {!! Form::submit('Complete Payment', ['class' => 'sm_button_menu', 'id' => 'submit']) !!}
+                                    {!! Form::submit('Complete Payment', ['class' => 'sm_button_menu', 'id' => 'submitBtn']) !!}
+                                </p>
+                                <p>
+                                    <span class="payment-errors" style="color: red;margin-top:10px;"></span>
                                 </p>
                             {!! Form::close() !!}
                         </div>

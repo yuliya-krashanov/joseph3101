@@ -154,6 +154,8 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+
+        Laravel\Cashier\CashierServiceProvider::class,
         //  Aimeos\Shop\ShopServiceProvider::class,
 
     ],

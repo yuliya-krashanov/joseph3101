@@ -22,7 +22,7 @@ Admin::model(\App\Product::class)
         Column::image('image', 'Image');
        // Column::lists('categories.title', 'Categories');
         //Column::lists('additional_categories.title', 'Additional Categories');
-        Column::boolean('enable', 'Enable');
+        //Column::boolean('enable', 'Enable');
 
     })->form(function ()
     {

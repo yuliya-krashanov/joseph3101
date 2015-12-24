@@ -43,6 +43,7 @@ elixir(function(mix) {
         'bootstrap.min.js',
         'typeahead.jquery.min.js',
         'app.js',
+        'stripe.js',
     ], null, 'public/js');
 
     mix.version([

@@ -30,6 +30,7 @@ $background-popup-overlay: rgba(0, 0, 0, 0.4);
 
 @import "resources/assets/sass/pages/page-friends";
 @import "resources/assets/sass/pages/page-menu";
+@import "resources/assets/sass/pages/page-checkout";
 
 .auth_popup{
   @extend %popup-wrap;

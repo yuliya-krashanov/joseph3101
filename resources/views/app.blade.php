@@ -137,6 +137,23 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         {{--<script src="{{ asset('js/ie10-viewport-bug-workaround.js') }}"></script>--}}
+        <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+        <!-- PARSLEY -->
+        <script>
+            window.ParsleyConfig = {
+                errorsWrapper: '<div></div>',
+                errorTemplate: '<div class="alert alert-danger parsley" role="alert"></div>',
+                errorClass: 'has-error',
+                successClass: 'has-success'
+            };
+        </script>
+        <script src="http://parsleyjs.org/dist/parsley.js"></script>
+        <script>
+            // This identifies your website in the createToken call below
+            Stripe.setPublishableKey('{!! env('STRIPE_PK') !!}')
+        </script>
+
+
         <script src="{{ elixir('js/all.js') }}"></script>
         <script type="text/javascript">
             $.ajaxSetup({

@@ -34,15 +34,7 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $table = 'users';
 
-    protected $fillable = ['phone', 'first_name', 'last_name', 'address_city', 'address_street', 'address_street_number', 'address_home_number', 'address_floor'];
-
-       /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = ['remember_token'];
-
+    protected $fillable = ['phone', 'first_name', 'last_name', 'email', 'address_city', 'address_street', 'address_street_number', 'address_home_number', 'address_floor', 'stripe_customer_id'];
 
     public static function scopeFindPhone($query, $value)
     {
@@ -52,6 +44,11 @@ class User extends Model implements AuthenticatableContract,
     public function member()
     {
         return $this->hasOne('App\Member', 'customer_id');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
     }
 
 }
