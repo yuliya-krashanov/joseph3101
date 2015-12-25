@@ -15,7 +15,6 @@ class CreateDeliveryMethodsTable extends Migration
         Schema::create('delivery_methods', function (Blueprint $table) {
             $table->integer('id', true)->unsigned();
             $table->string('name');
-            $table->timestamps();
         });
     }
 

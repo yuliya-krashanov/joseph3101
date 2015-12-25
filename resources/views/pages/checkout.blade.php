@@ -34,7 +34,7 @@
                                     {{--{!! Form::label('identity_id', 'Identity ID', ['class' => 'input_name required_label']) !!}--}}
                                 {{--</p>--}}
                                 <p id="email-group">
-                                    {!! Form::label('email', 'Email address:') !!}
+
                                     {!! Form::email('email', null, [
                                     'class' => 'aqua_input_menu',
                                     'placeholder'                   => 'email@example.com',
@@ -43,6 +43,7 @@
                                     'data-parsley-trigger'          => 'change focusout',
                                     'data-parsley-class-handler'    => '#email-group'
                                     ]) !!}
+                                    {!! Form::label('email', 'Email', ['class' => 'input_name required_label']) !!}
                                 </p>
                                 <p id="cc-group">
                                     {!! Form::text('credit_card', null, ['class' => 'aqua_input_menu', 'id' => 'credit_card', 'required' => 'required',
@@ -74,6 +75,21 @@
                                     <span class="payment-errors" style="color: red;margin-top:10px;"></span>
                                 </p>
                             {!! Form::close() !!}
+                        </div>
+
+                        {{-- Show $request errors after back-end validation --}}
+                        <div class="col-md-6 col-md-offset-3" style="margin-top: 38px;">
+                            @if($errors->has())
+                                <div class="alert alert-danger fade in">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <h4>The following errors occurred</h4>
+                                    <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

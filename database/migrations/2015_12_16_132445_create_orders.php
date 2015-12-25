@@ -25,8 +25,8 @@ class CreateOrders extends Migration
             $table->boolean('print'); 
             $table->integer('status')->unsigned();
             $table->foreign('status')->references('id')->on('statuses');
-            $table->text('comment');
-            $table->string('stripe_transaction_id');
+            $table->text('comment')->nullable();
+            $table->string('stripe_transaction_id')->nullable();
             $table->timestamps();
         });
     }

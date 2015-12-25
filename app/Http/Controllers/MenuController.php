@@ -29,8 +29,7 @@ class MenuController extends Controller
         $other_categories['drinks'] = Category::where('slug','drinks')->first()->products()->orderEnable()->get();
 
 //    	$lunch_deals = Product::with('additional_categories')->where('additional_categories.slug', 'lunch_deals');
-
-    	$add_to_go = Product::find(1);/*Product::with('additional_categories')->where('additional_categories.slug', 'add-to-go')->first()*/;
+//
         $cart = Cart::content();
        // Cart::remove('bd2f7a70385762cc1403be34dd6491b0');
 

@@ -1,3 +1,11 @@
+a.sm_button_menu.payment{
+  display: block;
+  left: 0;
+  &:hover{
+    text-decoration: none;
+    color: #fff;
+  }
+}
 .alert.parsley {
   margin-top: 5px;
   margin-bottom: 0px;

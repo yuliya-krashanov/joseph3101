@@ -8,7 +8,9 @@ class Order extends Model
 {
     protected $table = 'orders';
 
-    protected $fillable = ['user_id', 'amount', 'delivery_method', 'payment_method', 'print', 'status', 'stripe_transaction_id'];
+    protected $fillable = ['id','user_id', 'amount', 'delivery_method', 'payment_method', 'print', 'status', 'comment', 'stripe_transaction_id'];
+
+    public $incrementing = false;
 
     public function user()
     {

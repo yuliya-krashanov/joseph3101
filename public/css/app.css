@@ -172,6 +172,16 @@
   width: 820px;
 }
 
+a.sm_button_menu.payment {
+  display: block;
+  left: 0;
+}
+
+a.sm_button_menu.payment:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
 .alert.parsley {
   margin-top: 5px;
   margin-bottom: 0px;

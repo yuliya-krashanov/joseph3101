@@ -180,6 +180,51 @@ $(document).ready(function(){
         });
     });
 
+    $('.payment_bg button.cash').on('click', function(e){
+        $.ajax({
+            type: 'POST',
+            url: '/order/send-sms',
+            success: function(data) {
+                if (data.success){
+                    $('.payment_bg > p').remove();
+                    $('.payment_bg').append('<p class="checking-code-wrap"><input name="number" type="text" id="checking-code" placeholder="Number"><span></span><button class="check-code">Check code</button></p>');
+                }
+            },
+            error: function(data) { // the data parameter here is a jqXHR instance
+                var errors = data.responseJSON;
+                console.log('server errors',errors);
+            }
+        });
+    });
+
+    $(document).on('click', '.payment_bg button.check-code', function(){
+
+        var code = $('.payment_bg #checking-code').val();
+
+        if(!code){
+            return false;
+        }
+        else{
+            $.ajax({
+                type: 'POST',
+                url: '/order/cash',
+                data: {'code': code},
+                success: function(data) {
+                    if (data.code){
+                        window.location.pathname = 'order/thank-you/' + data.order;
+                    }
+                    else{
+                        $('.checking-code-wrap input').val('');
+                        $('.checking-code-wrap span').text('Wrong code. Try again');
+                    }
+                },
+                error: function(data) { // the data parameter here is a jqXHR instance
+                    var errors = data.responseJSON;
+                    console.log('server errors',errors);
+                }
+            });
+        }
+    });
 
     $(document).on('click', '.add_to_go_popup button.no-thank', function(e){
 

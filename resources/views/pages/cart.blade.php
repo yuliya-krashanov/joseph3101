@@ -76,11 +76,11 @@
                   </ul>
             </div>
             <p>
-              <button class="sm_button_menu payment">Pay by Cash to the delivery guy</button>
+              <button class="sm_button_menu payment cash">Pay by Cash to the delivery guy</button>
             </p>
             <br>
             <p>
-               <a href="{{ route('checkout_card') }}" class="sm_button_menu payment">Pay by Credit card</a>
+               <a href="{{ url('order/card') }}" class="sm_button_menu payment">Pay by Credit card</a>
             </p>
         </div>
       </div>
