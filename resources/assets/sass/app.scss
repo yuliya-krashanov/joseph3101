@@ -46,7 +46,11 @@ $background-popup-overlay: rgba(0, 0, 0, 0.4);
   @extend %popup-wrap;
 
   & .small_popup_home{
-    width: 600px;
+    width: 700px;
   }
 
+}
+
+.doller_price.home {
+  top: 50px;
 }

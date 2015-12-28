@@ -102,6 +102,11 @@ class OrderController extends Controller
         return view('pages.thankyou', ['id' => $request->id]);
     }
 
+    public function closeOrder($id)
+    {
+        $order = Order::find($id)->first();
+        $order->status = 2;
+    }
     /**
      * @param Request $request
      * @return $this

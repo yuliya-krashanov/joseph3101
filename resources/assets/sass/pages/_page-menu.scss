@@ -15,6 +15,7 @@
 
 .main-menu-page .menu-tab{
   position: absolute;
+  overflow-y: scroll;
   @extend %dynamic-opacity;
 }
 
@@ -53,5 +54,16 @@
 
   & .menu-order{
     width: 820px;
+  }
+}
+
+.main-menu-page{
+  height: calc(100vh - 200px);
+}
+
+.ordered_item{
+  ul.list.items{
+    max-height: 127px;
+    overflow-y: scroll;
   }
 }

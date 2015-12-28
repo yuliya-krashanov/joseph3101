@@ -22,6 +22,7 @@ class MenuController extends Controller
      */
     public function index()
     {
+        //Cart::destroy();
     	$pizzas = Category::where('slug','pizzas')->first()->products()->orderEnable()->get();
         $other_categories['salads'] = Category::where('slug','salads')->first()->products()->orderEnable()->get();
         $other_categories['pastas'] = Category::where('slug','pastas')->first()->products()->orderEnable()->get();

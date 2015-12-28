@@ -4,21 +4,6 @@
 
 @section('header')
     <body>
-        <div class="deal popup {{ $popup }}">
-
-            <div class="small_popup_home">
-                <img src="{{ asset('images/home--pizza.png') }}" alt="">
-                <h1 class="doller_price home">$10</h1>
-                <span class="deal_home" dir="ltr">Big deal!</span>
-                <h2 class="greek_home">"hawaii"</h2>
-                <small class="pop-small_home"> Pizza dough with tomato sauce, ham Pure nature, pineapple and Gouda cheese</small>
-                <p class="no-yes-btn_home">
-                    <button class="sm_button yes-add_home home-popup-button" data-value="get">Get Deal</button>
-                    <button class="sm_button no-thank_home home-popup-button" data-value="no">No, Thanks</button>
-                </p>
-            </div>
-
-        </div>
         <div id="bck2">
             @parent
         </div>
@@ -33,8 +18,7 @@
                         <!---------->
                         <div class="first position1">
                             <img src="{{ asset('images/bike.png')  }}" class=""/>
-                            <p>Fast</p>
-                            <h3>Delivery</h3>
+                            <p>Order Now</p>
                         </div>
                         <!---------->
                         <div class="second position2">

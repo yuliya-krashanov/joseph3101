@@ -17,8 +17,8 @@
 
 //use User;
 
-Admin::menu()->url('/')->label('Start page')->icon('fa-dashboard')->uses('\SleepingOwl\Admin\Controllers\DummyController@getIndex');
-
+Admin::menu()->url('/')->icon('fa-dashboard')->uses('\App\Http\Controllers\AdminController@dashboard');
+//SleepingOwl\Admin\Controllers\
 //Admin::menu()->url('/')->label('Start Page')->icon('fa-dashboard')->uses('\App\HTTP\Controllers\AdminController@getIndex');
 Admin::menu(\App\User::class)->icon('fa-user');
 Admin::menu(\App\Product::class)->icon('fa-shopping-cart');

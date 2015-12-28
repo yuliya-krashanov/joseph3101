@@ -41,12 +41,13 @@ class CartController extends Controller
             $ingredients = (isset($request->row['options']['ingredients'])) ? $request->row['options']['ingredients'] : null;
             $price = $product->{'price_'.$size};
 
-            foreach ($ingredients as $key => $ingredient) {
-                $ingredientDB = Ingredient::find($ingredient['id']);
-                $priceDB = ($ingredient['side'] == 'full') ?  $ingredientDB->price : $ingredientDB->price / 2;
-                $options['ingredients'][$key]['price'] = $priceDB;
-                $price += $priceDB;
-            }
+            if ($ingredients)
+                foreach ($ingredients as $key => $ingredient) {
+                    $ingredientDB = Ingredient::find($ingredient['id']);
+                    $priceDB = ($ingredient['side'] == 'full') ?  $ingredientDB->price : $ingredientDB->price / 2;
+                    $options['ingredients'][$key]['price'] = $priceDB;
+                    $price += $priceDB;
+                }
 
             Cart::associate('Product', 'App')->add($product->id, $product->title, $request->row['quantity'], $price, $options);
 

@@ -47,11 +47,13 @@
                         <div class="col-lg-2 col-sm-2 col-md-2 pad-zero">
                             <div class="ordered_item" dir="ltr">
                                 <h4 class="left_heading_text">Ordered Items</h4>
-                                <ul class="list">
-                                    @foreach($cart as $row)
+                                <ul class="list items">
+                                    @forelse($cart as $row)
                                         <li><span>{{ $row->name }}</span>{{ $row->subtotal }}$</li>
-                                    @endforeach
-                                    <li class="last">&nbsp;<span>&nbsp;</span></li>
+                                    @empty
+                                        <li class="last">&nbsp;<span></span></li>
+                                    @endforelse
+
                                 </ul>
                                 <!-------sub------>
                                 <ul class="list subtotal">

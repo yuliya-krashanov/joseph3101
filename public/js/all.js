@@ -20,7 +20,6 @@ var cartRowTemp = {
     price: '',
     quantity: 1,
     options: {
-
     }
 };
 
@@ -29,6 +28,27 @@ $(document).ready(function(){
     changeActiveItemMenu();
 
     autocompleteCityandStreet();
+
+    if (window.location.pathname == '/') {
+        $.ajax({
+            type: 'POST',
+            url: '/',
+            success: function (data) {
+                if (!data.showed) {
+                    $('body').prepend(data.popup);
+                    cartRowTemp.id = data.product.id;
+                    cartRowTemp.title = data.product.title;
+                    cartRowTemp.price = data.product.price_s;
+                    cartRowTemp.options.size = 's';
+                }
+            },
+            error: function (data) { // the data parameter here is a jqXHR instance
+                var errors = data.responseJSON;
+                console.log('server errors', errors);
+            }
+        });
+    }
+
 
     var phoneInput = $('.auth_popup form .mobile_number_box input');
 
@@ -103,12 +123,12 @@ $(document).ready(function(){
 
         checkAuth($(this), function(el, data){
 
-            console.log(data);
-            if (data == 1){
+            var id = el.parents('.item').attr('data-id'),
+                category = $('.menu-tab.active').attr('id').replace('-tab', ''),
+                price = el.attr('data-size');
 
-                 var id = el.parents('.item').attr('data-id'),
-                     category = $('.menu-tab.active').attr('id').replace('-tab', ''),
-                     price = el.attr('data-size');
+
+            if (data == 1){
 
                  $.ajax({
                     type: 'POST',
@@ -135,7 +155,37 @@ $(document).ready(function(){
                 });
                
             }
-            else  $('.auth_popup').addClass('show');
+            else  {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/menu/product',
+                    data: {
+                        'id': id,
+                        'category': category,
+                        'price': price
+                    },
+                    success: function(data) {
+                        if (data.popup){
+
+                            cartRowTemp.id = data.product.id;
+                            cartRowTemp.title = data.product.title;
+                            cartRowTemp.price = data.product['price_' + price];
+                            if (category == 'pizzas') cartRowTemp.options.size = price;
+
+                            addToCart(cartRowTemp, function(data){
+                                $('.auth_popup').addClass('show');
+                            });
+                        }
+                    },
+                    error: function(data) { // the data parameter here is a jqXHR instance
+                        var errors = data.responseJSON;
+                        console.log('server errors',errors);
+                    }
+                });
+
+
+            }
         });
 
     });
@@ -333,24 +383,49 @@ $(document).ready(function(){
 
     })
 
-    $('.home-popup-button').on('click', function(){
+    $(document).on('click', '.home-popup-button',function(){
 
         var todo = $(this).attr('data-value');
 
-        $.ajax({
-            type: 'POST',
-            url: '/',
-            data: {'todo': todo},
-            success: function(data) {
-                if (data.todo = 'no'){
-                    $('.deal.popup').removeClass('show');
+        if (todo == 'no'){
+            $.ajax({
+                type: 'POST',
+                url: '/',
+                success: function(data) {
+                    $('.deal.popup').remove();
+                    cartRowTemp = {
+                        id: '',
+                        title: '',
+                        price: '',
+                        quantity: 1,
+                        options: {
+                        }
+                    };
+
+                },
+                error: function(data) { // the data parameter here is a jqXHR instance
+                    var errors = data.responseJSON;
+                    console.log('server errors',errors);
                 }
-            },
-            error: function(data) { // the data parameter here is a jqXHR instance
-                var errors = data.responseJSON;
-                console.log('server errors',errors);
-            }
-        });
+            });
+        }
+        else{
+            addToCart(cartRowTemp, function(data){
+                if (data)
+                    $('.deal.popup').remove();
+            });
+            $.ajax({
+                type: 'POST',
+                url: '/',
+                success: function(data) {
+
+                },
+                error: function(data) { // the data parameter here is a jqXHR instance
+                    var errors = data.responseJSON;
+                    console.log('server errors',errors);
+                }
+            });
+        }
 
         e.preventDefault();
     });
@@ -385,6 +460,14 @@ function addToCart(cartRow, handleData){
             'total': totalItemPrice()
         },
         success: function(data) {
+            cartRowTemp = {
+                id: '',
+                title: '',
+                price: '',
+                quantity: 1,
+                options: {
+                }
+            };
             handleData(data);
         },
         error: function(data) { // the data parameter here is a jqXHR instance

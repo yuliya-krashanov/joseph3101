@@ -11553,6 +11553,7 @@ p.no-yes-btn_home {
 
 .main-menu-page .menu-tab {
   position: absolute;
+  overflow-y: scroll;
 }
 
 .add_to_go_popup .small_popup,
@@ -11590,6 +11591,15 @@ p.no-yes-btn_home {
   width: 820px;
 }
 
+.main-menu-page {
+  height: calc(100vh - 200px);
+}
+
+.ordered_item ul.list.items {
+  max-height: 127px;
+  overflow-y: scroll;
+}
+
 a.sm_button_menu.payment {
   display: block;
   left: 0;
@@ -11615,5 +11625,9 @@ a.sm_button_menu.payment:hover {
 }
 
 .popup .small_popup_home {
-  width: 600px;
+  width: 700px;
+}
+
+.doller_price.home {
+  top: 50px;
 }
