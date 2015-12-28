@@ -43,6 +43,14 @@ class Product extends SleepingOwlModel implements ModelWithImageFieldsInterface
         return $this->belongsToMany('App\AdditionalCategory', 'additional_category_product', 'product_id', 'category_id');
     }
 
+    /**
+     * The categories that belong to the product.
+     */
+    public function sales()
+    {
+        return $this->hasMany('App\Sale');
+    }
+
     public function getPriceSAttribute($value)
     {
         return round($value);
