@@ -20,11 +20,13 @@ Route::get('about', 'AboutController@index');
 Route::get('contact', 'ContactController@index');
 Route::post('contact', ['uses' => 'ContactController@create', 'as' => 'contactCreate']);
 
+Route::get('sales', 'SalesController@index');
+
 Route::get('/friends-club', 'FriendsController@index' );
 Route::get('/friends-club/register', ['uses' => 'FriendsController@register', 'as' => 'friends_club_register']);
 Route::post('/friends-club/register', ['uses' => 'FriendsController@create', 'as' => 'member_create']);
 
-Route::get('menu', ['uses' => 'MenuController@index', 'as' => 'menu']);
+Route::get('menu', 'MenuController@index');
 Route::post('menu/product', ['uses' => 'MenuController@singleProduct', 'as' => 'single_product']);
 Route::post('menu/ingredient', ['uses' => 'MenuController@singleIngredient', 'as' => 'single_ingredient']);
 Route::post('menu/add-to-go', ['uses' => 'MenuController@addToGoPopup', 'as' => 'add_to_go_popup']);
@@ -45,3 +47,6 @@ Route::put('auth', ['uses' => 'Auth\AuthController@checkPhone', 'as' => 'checkEx
 Route::post('/auth/check', function(Request $request){
     return (Auth::check()) ? 1 : 0;
 });
+
+
+Route::get('worker', ['uses' => 'WorkerController@index', 'as' => 'workerOrders']);

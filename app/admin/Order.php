@@ -8,14 +8,15 @@ Admin::model(App\Order::class)->title('Orders')->with('user', 'status')->filters
 {
 
 //\SleepingOwl\Admin\Controllers\AdminController
-})->columns(function ()
+})
+    ->columns(function ()
 {
     Column::string('id', 'ID');
     Column::string('user.first_name', 'First Name');
     Column::string('user.last_name', 'First Name');
     //Column::string('user_id', 'First Name');
 
-    Column::action('close', 'Close')->icon('fa-close')->callback(function ($instance)
+    Column::action('close', 'Close')->callback(function ($instance)
     {
         $order = Order::find($instance->id);
         $order->status = 2;
@@ -23,7 +24,7 @@ Admin::model(App\Order::class)->title('Orders')->with('user', 'status')->filters
         return redirect()->back();
     });
 
-    Column::action('show', 'Close')->icon('fa-close')->callback(function ($instance)
+    Column::action('details', 'Details')->callback(function ($instance)
     {
         $order = Order::find($instance->id);
         $order->status = 2;

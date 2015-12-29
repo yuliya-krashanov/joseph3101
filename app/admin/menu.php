@@ -17,16 +17,16 @@
 
 //use User;
 
-Admin::menu()->url('/')->icon('fa-dashboard')->uses('\App\Http\Controllers\AdminController@dashboard');
+//Admin::menu()->url('/')->icon('fa-dashboard')->uses('\App\Http\Controllers\AdminController@dashboard');
 //SleepingOwl\Admin\Controllers\
-//Admin::menu()->url('/')->label('Start Page')->icon('fa-dashboard')->uses('\App\HTTP\Controllers\AdminController@getIndex');
+
+Admin::menu()->url('/')->label('Start Page')->icon('fa-dashboard')->uses('\SleepingOwl\Admin\Controllers\DummyController@getIndex');
 Admin::menu(\App\User::class)->icon('fa-user');
 Admin::menu(\App\Product::class)->icon('fa-shopping-cart');
 Admin::menu(\App\Category::class)->icon('fa-shopping-cart');
 Admin::menu(\App\AdditionalCategory::class)->icon('fa-shopping-cart');
 Admin::menu(\App\Ingredient::class)->icon('fa-shopping-cart');
-//Admin::menu()->label('Subitems')->icon('fa-book')->items(function ()
-//{
-//    Admin::menu(\Acme\Models\Bar\User::class)->icon('fa-user');
-//    Admin::menu(\Acme\Models\Foo::class)->label('my label');
-//});
+Admin::menu()->label('Sales/Coupons')->icon('fa-book')->items(function ()
+{
+    Admin::menu(\App\Sale::class)->icon('fa-user');
+});
