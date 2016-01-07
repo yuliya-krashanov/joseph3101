@@ -51,4 +51,9 @@ class Order extends Model
     {
         return $this->belongsToMany('App\Product')->withPivot('size', 'quantity', 'subtotal', 'ingredients');
     }
+
+    public function scopeOpened($query)
+    {
+        return $query->where('status', 1)->orderBy('created_at', 'desc');
+    }
 }
