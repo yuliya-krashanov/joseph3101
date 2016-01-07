@@ -22,8 +22,7 @@ class CreateConditionsTable extends Migration
             $table->text('image');
             $table->integer('free_product_id')->unsigned();
             $table->foreign('free_product_id')->references('id')->on('products');
-            $table->decimal('sale_price');
-            $table->float('sale_percent');
+            $table->text('condition_products');
             $table->timestamps();
         });
     }
