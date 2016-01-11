@@ -12,6 +12,7 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
+        if ($request->session()->has('mobile_app'))
         return view('pages.home');
     }
 
