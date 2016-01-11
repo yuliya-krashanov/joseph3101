@@ -11479,6 +11479,14 @@ p.no-yes-btn_home {
   text-decoration: none;
 }
 
+.answer {
+  font-size: 19px;
+  text-align: center;
+  color: #ffb612;
+  margin-top: 20px;
+  display: none;
+}
+
 .friend-register label {
   margin-bottom: 10px;
 }
@@ -11621,7 +11629,7 @@ a.sm_button_menu.payment:hover {
 }
 
 .auth_popup .big_popup {
-  width: 600px;
+  width: 1200px;
 }
 
 .popup .small_popup_home {

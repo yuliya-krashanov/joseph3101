@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use SleepingOwl\Models\Interfaces\ModelWithImageFieldsInterface;
 use SleepingOwl\Models\Traits\ModelWithImageOrFileFieldsTrait;
 
-class Sale extends Model implements ModelWithImageFieldsInterface
+class Sale extends Model
 {
     use ModelWithImageOrFileFieldsTrait;
 
@@ -19,23 +19,13 @@ class Sale extends Model implements ModelWithImageFieldsInterface
 
     protected $dateFormat = 'Y-m-d';
 
-
-    public function getImageFields()
+    public function setImageAttribute($value)
     {
-        return [
-            'image' => 'sales/',
-        ];
-    }
+        $product = Product::find($this->attributes['product_id']);
 
-    public function setImage($field, $image)
-    {
-        parent::setImage($field, $image);
-        $file = $this->$field;
-        if ( ! $file->exists()) return;
-        $path = $file->getFullPath();
 
         // you can use Intervention Image package features to change uploaded image
-        \Image::make($path)->resize(10, 10)->save();
+        \Image::make(asset('images/coupons_basic/c'.$value.'.png'))->insert(asset('images/products/'.$product->image, 'center-left', 15, 0))->save();
     }
 
     public function product()

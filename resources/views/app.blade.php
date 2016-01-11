@@ -37,7 +37,8 @@
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                         {!! Form::open(['route' => 'authUser']) !!}
                             <div class="mobile_number_box">
-                                {!! Form::text('phone', null, ['class' => 'popup_input',  'placeholder' => 'Mobile/Phone Number', 'required' => 'required']) !!}
+                                {!! Form::text('phone', null, ['class' => 'popup_input',  'placeholder' => 'Mobile/Phone Number', 'required' => 'required', 'id' => 'auth_mobile_phone',]) !!}
+                                <p class="answer">We know you! We already friends. Please check your details and click Continue</p>
                             </div>
                             <div class="first_last">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -136,6 +137,7 @@
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVt4mD9oqVr7M3RGtx2X5a-JgOgpiy1E8&libraries=places"></script>
         {{--<script src="{{ asset('js/ie10-viewport-bug-workaround.js') }}"></script>--}}
         <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
         <!-- PARSLEY -->

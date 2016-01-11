@@ -27,7 +27,21 @@ $(document).ready(function(){
 
     changeActiveItemMenu();
 
-    autocompleteCityandStreet();
+    var inputCity = document.getElementById('address_city');
+    var inputStreet = document.getElementById('address_street');
+    var options = {
+        types: ['(cities)'],
+        componentRestrictions: {country: 'il'}
+    };
+    var optionsStreet = {
+        types: ['(streets)'],
+        componentRestrictions: {country: 'il'}
+    };
+
+    var autocompleteCity = new google.maps.places.Autocomplete(inputCity, options);
+    var autocompleteStreet = new google.maps.places.Autocomplete(inputStreet, optionsStreet);
+
+   // autocompleteCityandStreet();
 
     if (window.location.pathname == '/') {
         $.ajax({
@@ -64,6 +78,7 @@ $(document).ready(function(){
     phoneInput.keyup(function(e){
       var phoneValue = $(this).val();
       var phone = phoneValue.replace(/[^0-9]/g, '');
+      $('.answer').hide();
       if (phone.length > 9){
         $.ajax({
             type: 'PUT',
@@ -71,6 +86,7 @@ $(document).ready(function(){
             data: { 'phone' : phone },
             success: function(data) {
                 if (data.success){
+                    $('.answer').show();
                     $('.auth_popup form').find('#auth_first_name').val(data.first_name);
                     $('.auth_popup form').find('#auth_last_name').val(data.last_name);
                     $('.auth_popup form').find('#auth_city').val(data.city);
@@ -113,9 +129,23 @@ $(document).ready(function(){
         }
     });
 
-    $(document).on('click', '.comments_popup', function(e){
-        if (e.target.className == 'comments_popup show'){
-            $('.comments_popup').removeClass('show').remove();
+    $(document).on('click', '.add_to_cart_popup', function(e){
+        if (e.target.className == 'add_to_cart_popup show'){
+            cartRowTemp = {
+                id: '',
+                title: '',
+                price: '',
+                quantity: 1,
+                options: {
+                }
+            };
+            $('.add_to_cart_popup').removeClass('show').remove();
+        }
+    });
+
+    $(document).on('click', '.auth_popup', function(e){
+        if (e.target.className == 'auth_popup show'){
+            $('.auth_popup').removeClass('show');
         }
     });
 

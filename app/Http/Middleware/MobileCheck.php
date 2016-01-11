@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Jenssegers\Agent\Agent;
 
 class MobileCheck
 {
@@ -17,7 +18,7 @@ class MobileCheck
      */
     public function handle($request, Closure $next)
     {
-        $agent = new Agent;
+        $agent = new Agent();
         if ($agent->isMobile())
             if ( !$request->session()->has('mobile_choise') ) {
                 if ($request->ajax()) {

@@ -82,4 +82,9 @@ class Product extends SleepingOwlModel implements ModelWithImageFieldsInterface
 
         $this->additional_categories()->attach($categories);
     }
+
+    public static function getList()
+    {
+        return self::lists('title', 'id')->all();
+    }
 }

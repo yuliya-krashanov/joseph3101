@@ -13,15 +13,21 @@ Admin::model(App\Sale::class)->title('Sales')->with('product')->filters(function
 
 })->form(function ()
 {
+    FormItem::register('my', function ($instance)
+    {
+        AssetManager::addScript(URL::asset('js/admin.js'));
+
+        return 'anything';
+    });
+
 	FormItem::text('title', 'Title');
 	FormItem::checkbox('enable', 'Enable');
     FormItem::ckeditor('description', 'Description');
 	FormItem::date('start_date', 'Start Date');
 	FormItem::date('end_date', 'End Date');
-    FormItem::image('image', 'Image');
 	FormItem::select('product_id', 'Product')->list(\App\Product::class);
     FormItem::textAddon('product.price', 'Price')->addon('$')->placement('after');
-	FormItem::text('sale_price', 'Sale Price');
+    FormItem::textAddon('sale_price', 'Sale Price')->addon('$')->placement('after')->required();
 	FormItem::text('sale_percent', 'Sale Percent');
-    FormItem::textAddon('sale_price', 'sale_price')->addon('$')->placement('after')->required();
+    FormItem::select('image', 'Coupon Theme')->list([1,2,3,4,5,6]);
 });
