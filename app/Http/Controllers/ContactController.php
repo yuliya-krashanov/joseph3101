@@ -18,7 +18,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('pages.contact.index', ['popup' => '' ]);
+        return view('pages.contact.index');
     }
 
     /**
@@ -44,7 +44,9 @@ class ContactController extends Controller
 
         });
 
-        return view('pages.contact.index', ['popup' => 'show' ]);
+        session()->flash('flash_message', 'Contact form was send successfully. Thank you!');
+
+        return redirect()->url('/');
     }
 
 }

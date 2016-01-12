@@ -10,7 +10,7 @@
             font-size: 36px;
         }
     </style>
-    <div class="deal popup {{ $popup }}">
+    <div class="deal popup">
 
         <div class="small_popup_home">
             <img src="{{ asset('images/home--pizza.png') }}" alt="">

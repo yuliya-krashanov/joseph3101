@@ -25,7 +25,7 @@ class Sale extends Model
 
 
         // you can use Intervention Image package features to change uploaded image
-        \Image::make(asset('images/coupons_basic/c'.$value.'.png'))->insert(asset('images/products/'.$product->image, 'center-left', 15, 0))->save();
+        \Image::make(asset('images/coupons_basic/c'.$value.'.png'))->insert(asset('images/products/'.$product->image), 'center-left', 15, 0)->save();
     }
 
     public function product()

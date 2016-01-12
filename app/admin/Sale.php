@@ -20,14 +20,14 @@ Admin::model(App\Sale::class)->title('Sales')->with('product')->filters(function
         return 'anything';
     });
 
-	FormItem::text('title', 'Title');
+	FormItem::text('title', 'Title')->required();
 	FormItem::checkbox('enable', 'Enable');
     FormItem::ckeditor('description', 'Description');
-	FormItem::date('start_date', 'Start Date');
-	FormItem::date('end_date', 'End Date');
-	FormItem::select('product_id', 'Product')->list(\App\Product::class);
+	FormItem::date('start_date', 'Start Date')->required();
+	FormItem::date('end_date', 'End Date')->required();
+	FormItem::select('product_id', 'Product')->list(\App\Product::class)->required();
     FormItem::textAddon('product.price', 'Price')->addon('$')->placement('after');
     FormItem::textAddon('sale_price', 'Sale Price')->addon('$')->placement('after')->required();
 	FormItem::text('sale_percent', 'Sale Percent');
-    FormItem::select('image', 'Coupon Theme')->list([1,2,3,4,5,6]);
+    FormItem::select('image', 'Coupon Theme')->list([1,2,3,4,5,6])->required();
 });

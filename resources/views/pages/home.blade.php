@@ -4,6 +4,13 @@
 
 @section('header')
     <body>
+        @if (session()->has('flash_message'))
+            <div class="message-popup-wrap">
+                <div class="message-popup">
+                    <div class="message">{{ session('flash_message') }}</div>
+                </div>
+            </div>
+        @endif
         <div id="bck2">
             @parent
         </div>
