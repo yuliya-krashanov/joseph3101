@@ -5,7 +5,7 @@
 @section('header')
     <body>
         @if (session()->has('flash_message'))
-            <div class="message-popup-wrap">
+            <div class="message-popup-wrap show">
                 <div class="message-popup">
                     <div class="message">{{ session('flash_message') }}</div>
                 </div>

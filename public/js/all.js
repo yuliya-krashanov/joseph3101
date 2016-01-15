@@ -27,19 +27,23 @@ $(document).ready(function(){
 
     changeActiveItemMenu();
 
-    var inputCity = document.getElementById('address_city');
-    var inputStreet = document.getElementById('address_street');
-    var options = {
-        types: ['(cities)'],
-        componentRestrictions: {country: 'il'}
-    };
-    var optionsStreet = {
-        types: ['(streets)'],
-        componentRestrictions: {country: 'il'}
-    };
 
-    var autocompleteCity = new google.maps.places.Autocomplete(inputCity, options);
-    var autocompleteStreet = new google.maps.places.Autocomplete(inputStreet, optionsStreet);
+    if (window.location.pathname == '/friends-club/register') {
+        var inputCity = document.getElementById('address_city');
+        var inputStreet = document.getElementById('address_street');
+        var options = {
+            types: ['(cities)'],
+            componentRestrictions: {country: 'il'}
+        };
+        var optionsStreet = {
+            types: ['(streets)'],
+            componentRestrictions: {country: 'il'}
+        };
+
+        var autocompleteCity = new google.maps.places.Autocomplete(inputCity, options);
+        var autocompleteStreet = new google.maps.places.Autocomplete(inputStreet, optionsStreet);
+    }
+
 
    // autocompleteCityandStreet();
 
@@ -48,7 +52,7 @@ $(document).ready(function(){
             type: 'POST',
             url: '/',
             success: function (data) {
-                if (!data.showed) {
+                if (data.showed) {
                     $('body').prepend(data.popup);
                     cartRowTemp.id = data.product.id;
                     cartRowTemp.title = data.product.title;
@@ -60,6 +64,41 @@ $(document).ready(function(){
                 var errors = data.responseJSON;
                 console.log('server errors', errors);
             }
+        });
+
+        $(document).on('click', '.home-popup-button',function(e){
+
+            var todo = $(this).attr('data-value');
+
+            if (todo == 'get'){
+                addToCart(cartRowTemp, function(data){
+                    if (data)
+                        $('.deal.popup').remove();
+                });
+            }
+            $.ajax({
+                type: 'PUT',
+                url: '/',
+                success: function(data) {
+                    $('.deal.popup').remove();
+                    cartRowTemp = {
+                        id: '',
+                        title: '',
+                        price: '',
+                        quantity: 1,
+                        options: {
+                        }
+                    };
+
+                },
+                error: function(data) { // the data parameter here is a jqXHR instance
+                    var errors = data.responseJSON;
+                    console.log('server errors',errors);
+                }
+            });
+
+
+            e.preventDefault();
         });
     }
 
@@ -112,7 +151,7 @@ $(document).ready(function(){
     //}
 
     $('.navbar li.order a').on('click', function(){
-        $('body').is('.auth_popup') ? $('.auth_popup').addClass('show') :  window.location.pathname = '/menu';
+        $('body').has('.auth_popup').length ? $('.auth_popup').addClass('show') :  window.location.pathname = '/menu';
     });
 
     $(document).on('click', '.add_to_cart_popup', function(e){
@@ -129,19 +168,6 @@ $(document).ready(function(){
         }
     });
 
-    $(document).on('click', '.add_to_cart_popup', function(e){
-        if (e.target.className == 'add_to_cart_popup show'){
-            cartRowTemp = {
-                id: '',
-                title: '',
-                price: '',
-                quantity: 1,
-                options: {
-                }
-            };
-            $('.add_to_cart_popup').removeClass('show').remove();
-        }
-    });
 
     $(document).on('click', '.auth_popup', function(e){
         if (e.target.className == 'auth_popup show'){
@@ -413,52 +439,7 @@ $(document).ready(function(){
 
     })
 
-    $(document).on('click', '.home-popup-button',function(){
 
-        var todo = $(this).attr('data-value');
-
-        if (todo == 'no'){
-            $.ajax({
-                type: 'POST',
-                url: '/',
-                success: function(data) {
-                    $('.deal.popup').remove();
-                    cartRowTemp = {
-                        id: '',
-                        title: '',
-                        price: '',
-                        quantity: 1,
-                        options: {
-                        }
-                    };
-
-                },
-                error: function(data) { // the data parameter here is a jqXHR instance
-                    var errors = data.responseJSON;
-                    console.log('server errors',errors);
-                }
-            });
-        }
-        else{
-            addToCart(cartRowTemp, function(data){
-                if (data)
-                    $('.deal.popup').remove();
-            });
-            $.ajax({
-                type: 'POST',
-                url: '/',
-                success: function(data) {
-
-                },
-                error: function(data) { // the data parameter here is a jqXHR instance
-                    var errors = data.responseJSON;
-                    console.log('server errors',errors);
-                }
-            });
-        }
-
-        e.preventDefault();
-    });
 
     $('.friend_from select#status').on('change', function(){
 

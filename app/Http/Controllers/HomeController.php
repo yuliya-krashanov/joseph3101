@@ -19,13 +19,14 @@ class HomeController extends Controller
     {
         if ($request->ajax()){
             $showed = $request->session()->has('home_popup');
+
             if (!$showed) {
                 $home_product = AdditionalCategory::where('slug', 'special-homepage')->first()->products()->first();
                 $popup = view('popups.home', compact('home_product'))->render();
-                return Response::json(['popup' => $popup, 'product' => $home_product, 'showed' => $showed]);
+                return Response::json(['popup' => $popup, 'product' => $home_product, 'showed' => true]);
             }
             else{
-                return Response::json(['showed' => $showed]);
+                return Response::json(['showed' => false]);
             }
         }
     }

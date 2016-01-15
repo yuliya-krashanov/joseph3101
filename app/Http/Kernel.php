@@ -31,5 +31,6 @@ class Kernel extends HttpKernel
         'authEmptyCart' => \App\Http\Middleware\AuthenticateEmptyCart::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'registered_user' => \App\Http\Middleware\RedirectIfRegistered::class
     ];
 }

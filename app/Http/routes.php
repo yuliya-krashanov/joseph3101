@@ -14,7 +14,8 @@
 /* Static Pages */
 
 Route::get('/', 'HomeController@index');
-Route::post('/', ['uses' => 'HomeController@approvePopup', 'as' => 'approveHomePopup']);
+Route::post('/', ['uses' => 'HomeController@checkPopup', 'as' => 'checkHomePopup']);
+Route::put('/', ['uses' => 'HomeController@approvePopup', 'as' => 'approveHomePopup']);
 
 Route::get('about', 'AboutController@index');
 Route::get('contact', 'ContactController@index');

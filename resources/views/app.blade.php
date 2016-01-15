@@ -85,7 +85,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-sm-3 col-md-3 logo">
-                    <a href="#"><img src="{{ asset('images/top-logo.png')  }}"></a>
+                    <a href="{{ url('/') }}"><img src="{{ asset('images/top-logo.png')  }}"></a>
                 </div>
                 <div class="col-lg-2 col-sm-2 col-md-2 count">
                     <h3>3101*</h3>

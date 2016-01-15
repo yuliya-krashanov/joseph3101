@@ -11,6 +11,11 @@ use App\Http\Controllers\Controller;
 
 class FriendsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('registered_user', ['except' => ['index']]);
+    }
+
     public function index()
     {
         return view('pages.friends.index');
@@ -27,7 +32,7 @@ class FriendsController extends Controller
 
         $member->first_name = $request->first_name;
         $member->last_name = $request->last_name;
-        $member->address_city = $request->address_city;
+        $member->address_city = substr($request->address_city, 0, strpos($request->address_city, ','));
         $member->address_street = $request->address_street;
         $member->address_street_number = $request->address_street_number;
         $member->address_home_number = $request->address_home_number;
@@ -57,6 +62,11 @@ class FriendsController extends Controller
             $message->from($member->email, 'Pizza 3101' ) ;
             $message->to('yuliya-krashanov@yandex.ua', 'Yuliya')->subject('Pizza | New member in Friends Club');
         });
-        return back();
+
+
+        session()->put('friends_club_registered', true);
+        session()->flash('flash_message', 'You registered successfully. Thank you');
+
+        return redirect('/');
     }
 }

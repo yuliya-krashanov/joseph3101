@@ -11420,6 +11420,7 @@ p.no-yes-btn_home {
 .comments_popup,
 .add_to_cart_popup,
 .auth_popup,
+.message-popup-wrap,
 .popup {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -11436,6 +11437,7 @@ p.no-yes-btn_home {
 .comments_popup,
 .add_to_cart_popup,
 .auth_popup,
+.message-popup-wrap,
 .popup {
   position: absolute;
   visibility: hidden;
@@ -11450,6 +11452,7 @@ p.no-yes-btn_home {
 .show.comments_popup,
 .show.add_to_cart_popup,
 .show.auth_popup,
+.show.message-popup-wrap,
 .show.popup {
   opacity: 1;
   visibility: visible;
@@ -11630,6 +11633,28 @@ a.sm_button_menu.payment:hover {
 
 .auth_popup .big_popup {
   width: 1200px;
+}
+
+.message-popup-wrap .message-popup {
+  width: 500px;
+  height: 150px;
+  border: 3px solid #000;
+  border-radius: 5px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.message-popup-wrap .message-popup .message {
+  color: #000;
+  font-size: 20px;
 }
 
 .popup .small_popup_home {

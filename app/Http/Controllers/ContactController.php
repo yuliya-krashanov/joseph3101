@@ -44,9 +44,9 @@ class ContactController extends Controller
 
         });
 
-        session()->flash('flash_message', 'Contact form was send successfully. Thank you!');
+        session()->flash('flash_message', 'Contact form was send successfully. Thank you');
 
-        return redirect()->url('/');
+        return redirect('/');
     }
 
 }

@@ -2,23 +2,26 @@
 
 Admin::model(App\Sale::class)->title('Sales')->with('product')->filters(function ()
 {
-
+    ModelItem::filter('product_id')->title()->from(\App\Product::class);
 })->columns(function ()
 {
     Column::string('title', 'Title');
     Column::string('description', 'Description');
+    Column::string('product.title', 'Product')
+        ->append(Column::filter('product_id')->value('product.id'));
     Column::date('start_date', 'Start Date');
     Column::date('end_date', 'End Date');
     Column::image('image', 'Image');
 
-})->form(function ()
+})->form(
+    function ()
 {
-    FormItem::register('my', function ($instance)
+/*    FormItem::register('my', function ($instance)
     {
         AssetManager::addScript(URL::asset('js/admin.js'));
 
         return 'anything';
-    });
+    });*/
 
 	FormItem::text('title', 'Title')->required();
 	FormItem::checkbox('enable', 'Enable');
