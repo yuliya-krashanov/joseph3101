@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use SleepingOwl\Models\Interfaces\ModelWithImageFieldsInterface;
 use SleepingOwl\Models\Traits\ModelWithImageOrFileFieldsTrait;
 
-class Sale extends \SleepingOwl\Models\SleepingOwlModel implements ModelWithImageFieldsInterface
+class Sale extends Model
 {
    // use ModelWithImageOrFileFieldsTrait;
 
@@ -19,16 +19,16 @@ class Sale extends \SleepingOwl\Models\SleepingOwlModel implements ModelWithImag
 
     protected $dateFormat = 'Y-m-d';
 
-    public function getImageFields()
-    {
-        return [
-            'image' => 'coupons/'
-        ];
-    }
-
+//    public function getImageFields()
+//    {
+//        return [
+//            'image' => 'coupons/'
+//        ];
+//    }
+//
     public function setImageAttribute($value)
     {
-       // dd($value);
+        dd($value);
         if ( ! $value) return;
         if ( ! $this->exists) $this->save();
         $product = Product::find($this->attributes['product_id']);

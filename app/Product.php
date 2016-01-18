@@ -7,9 +7,9 @@ use SleepingOwl\Models\SleepingOwlModel;
 use SleepingOwl\Models\Interfaces\ModelWithImageFieldsInterface;
 use SleepingOwl\Models\Traits\ModelWithImageOrFileFieldsTrait;
 
-class Product extends SleepingOwlModel implements ModelWithImageFieldsInterface
+class Product extends Model
 {
-    use ModelWithImageOrFileFieldsTrait;
+  //  use ModelWithImageOrFileFieldsTrait;
 
     protected $table = 'products';
 

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use SleepingOwl\Models\SleepingOwlModel;
 
-class Category extends SleepingOwlModel
+class Category extends Model
 {
     protected $table = 'categories';
 

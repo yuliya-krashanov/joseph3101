@@ -49,5 +49,6 @@ Route::post('/auth/check', function(Request $request){
     return (Auth::check()) ? 1 : 0;
 });
 
+Route::post('admin/product/price', ['uses' => 'AdminController@get_product_price', 'as' => 'get_product_price']);
 
 Route::get('worker', ['uses' => 'WorkerController@index', 'as' => 'workerOrders']);

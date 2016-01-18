@@ -22,7 +22,12 @@
  */
 
 
-Column::register('boolean', \App\BooleanColumn::class);
+//Column::register('boolean', \App\BooleanColumn::class);
 
-FormItem::register('imageSelect', \App\MultiSelect2::class);
+//FormItem::register('imageSelect', \App\MultiSelect2::class);
 
+FormItem::register('saleScript', function (\Eloquent $model)
+    {
+        AssetManager::addScript(URL::asset('js/admin.js'));
+        return '';
+    });

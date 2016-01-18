@@ -1,24 +1,26 @@
 <?php
 
-// Create admin model from Category class with title and url alias
-Admin::model(\App\AdditionalCategory::class)
-    ->title('Additional Categories')
-    ->as('additional-categories')
-    ->denyCreating(function ()
+Admin::model('App\AdditionalCategory')
+    ->title('Additional categories')
+    ->alias('additional-categories')
+    ->display(function ()
     {
+        $display = AdminDisplay::datatables();
+        $display->columns([
 
-    })->denyEditingAndDeleting(function ($instance)
-    {
+            Column::string('id')->label('ID'),
+            Column::string('title')->label('Title'),
+            Column::string('slug')->label('Slug')
+        ]);
 
-    })->columns(function ()
+        return $display;
+    })->createAndEdit(function ()
     {
-        // Describing columns for table view
-        Column::string('id', 'ID');
-        Column::string('title', 'Title');
-        Column::string('slug', 'Slug');
+        $form = AdminForm::form();
+        $form->items([
 
-    })->form(function ()
-    {
-        // Describing elements in create and editing forms
-        FormItem::text('title', 'Title')->required();
+            FormItem::text('title', 'Title')->required(),
+            FormItem::hidden('slug'),
+        ]);
+        return $form;
     });
